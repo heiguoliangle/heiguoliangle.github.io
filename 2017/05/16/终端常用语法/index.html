@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -195,7 +195,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -259,7 +259,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-16T15:19:08+08:00">
                 2017-05-16
@@ -342,8 +342,9 @@ gitalk.render(&apos;gitalk-container&apos;);
 <li><code>register write 寄存器 = 1</code> <code>expression 寄存器 = 1</code> 两个命令一样,修改寄存器的值为1</li>
 <li><code>register read 寄存器</code> <code>expression 寄存器</code> 读取寄存器</li>
 <li><p><code>frame info</code> 查看当前栈帧函数名,如果有参数这有参数,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">frame #1: 0x0000000106dff76b ArmDemo`-[ViewController viewDidLoad](self=0x00007fdd8940ebe0, _cmd=&quot;viewDidLoad&quot;) at ViewController.m:36``` </span><br><span class="line">		</span><br><span class="line">	16. `frame variable` ,查看当前栈帧函数名,参数,函数内部局部变量</span><br></pre></td></tr></table></figure>
-<p>(ViewController *) self = 0x00007fdd8940ebe0<br>(SEL) _cmd = “b1:b2:b3:b4:b5:b6:b7:b8:b9:”<br>(int) b1 = 1<br>(int) b2 = 2<br>(int) b3 = 3<br>(int) b4 = 4<br>(int) b5 = 5<br>(int) b6 = 6<br>(int) b7 = 7<br>(int) b8 = 8<br>(int) b9 = 9<br>(int) c = 0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">17. `frame select 0` 展示选择栈帧时部分代码</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">frame #1: 0x0000000106dff76b ArmDemo`-[ViewController viewDidLoad](self=0x00007fdd8940ebe0, _cmd=&quot;viewDidLoad&quot;) at ViewController.m:36</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		</span><br><span class="line">	16. `frame variable` ,查看当前栈帧函数名,参数,函数内部局部变量</span><br></pre></td></tr></table></figure>
+<p>(ViewController *) self = 0x00007fdd8940ebe0<br>(SEL) _cmd = “b1:b2:b3:b4:b5:b6:b7:b8:b9:”<br>(int) b1 = 1<br>(int) b2 = 2<br>(int) b3 = 3<br>(int) b4 = 4<br>(int) b5 = 5<br>(int) b6 = 6<br>(int) b7 = 7<br>(int) b8 = 8<br>(int) b9 = 9<br>(int) c = 0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">17. `frame select 0` 展示选择栈帧时部分代码</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
@@ -457,10 +458,10 @@ frame #3: 0x00000001083c819e UIKit</code>-[UIViewController view] + 27<br>frame 
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -481,7 +482,7 @@ frame #3: 0x00000001083c819e UIKit</code>-[UIViewController view] + 27<br>frame 
                 <a href="/archives/">
               
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -494,7 +495,7 @@ frame #3: 0x00000001083c819e UIKit</code>-[UIViewController view] + 27<br>frame 
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">Tags</span>
                 
               </div>
             
@@ -556,7 +557,7 @@ frame #3: 0x00000001083c819e UIKit</code>-[UIViewController view] + 27<br>frame 
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
