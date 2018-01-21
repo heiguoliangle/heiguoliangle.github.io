@@ -787,7 +787,23 @@
       
         
           
-            <h1 id="终端常用语法"><a href="#终端常用语法" class="headerlink" title="终端常用语法"></a>终端常用语法</h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ViewController viewDidLoad]</span><br></pre></td></tr></table></figure>
+            <!-- Gitalk 评论 start  -->
+<!-- Link Gitalk 的支持文件  -->
+<p><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></p>
+<p><script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> </p>
+<p><div id="gitalk-container"></div>     <script type="text/javascript"><br>    var gitalk = new Gitalk({</p>
+<pre><code>// gitalk的主要参数
+    clientID: c2f76735bcc99b8d4733,
+    clientSecret: 18b871c31a7c454791c3f1a3352475e3e0c5b5f8,
+    repo: heiguoliangle.github.io,
+    owner: heiguoliangle,
+    admin: [heiguoliangle],
+    id: &apos;window.location.pathname&apos;,
+
+});
+gitalk.render(&apos;gitalk-container&apos;);
+</code></pre><p></script><br><!-- Gitalk end --></p>
+<h1 id="终端常用语法"><a href="#终端常用语法" class="headerlink" title="终端常用语法"></a>终端常用语法</h1><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ViewController viewDidLoad]</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ViewController viewDidLoad]</span><br></pre></td></tr></table></figure>
 <ol>
 <li><code>ps -e</code> 查看每个模块的全路径</li>
@@ -835,22 +851,6 @@ frame #3: 0x00000001083c819e UIKit</code>-[UIViewController view] + 27<br>frame 
 <p>(lldb) image lookup -v –address 0x0000000106dfe000<br>      Address: ArmDemo[0x0000000100000000] (ArmDemo.__TEXT + 0)<br>      Summary: ArmDemo`_mh_execute_header<br>       Module: file = “/Users/guolianghao/Library/Developer/Xcode/DerivedData/ArmDemo-crbwjymsidrgejervyhgwvtufpbw/Build/Products/Debug-iphonesimulator/ArmDemo.app/ArmDemo”, arch = “x86_64”<br>       Symbol: id = {0x00000174}, range = [0x0000000106dfe000-0x0000000106dff6b0), mangled=”_mh_execute_header”<br>        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">8. `grep -r 检索条件 路径` 对某个路径下进行条件检索</span><br><span class="line"></span><br><span class="line">#cycript 中语法</span><br><span class="line">1. `[[[UIApplication sharedApplication]keyWindow] recursiveDescription]` `[[UIApp keyWindow] recursiveDescription]`相同效果,展示当前界面下所有视图结构</span><br></pre></td></tr></table></figure></p>
 <p>[self.view recursiveDescription];<br>```</p>
 <h1 id="砸壳过程"><a href="#砸壳过程" class="headerlink" title="砸壳过程"></a>砸壳过程</h1><p><a href="http://www.cnblogs.com/ludashi/p/5725743.html" target="_blank" rel="noopener">砸壳</a></p>
-<!-- Gitalk 评论 start  -->
-<!-- Link Gitalk 的支持文件  -->
-<p><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></p>
-<p><script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> </p>
-<p><div id="gitalk-container"></div>     <script type="text/javascript"><br>    var gitalk = new Gitalk({</p>
-<pre><code>// gitalk的主要参数
-    clientID: c2f76735bcc99b8d4733,
-    clientSecret: 18b871c31a7c454791c3f1a3352475e3e0c5b5f8,
-    repo: heiguoliangle.github.io,
-    owner: heiguoliangle,
-    admin: [heiguoliangle],
-    id: &apos;window.location.pathname&apos;,
-
-});
-gitalk.render(&apos;gitalk-container&apos;);
-</code></pre><p></script><br><!-- Gitalk end --></p>
 
           
         
