@@ -231,6 +231,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/23/RN基础学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑锅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="heiguoliangle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/23/RN基础学习笔记/" itemprop="url">RN基础学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T13:44:34+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="RN学习笔记"><a href="#RN学习笔记" class="headerlink" title="RN学习笔记"></a>RN学习笔记</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="1-关于-和-的用法"><a href="#1-关于-和-的用法" class="headerlink" title="1. 关于{} 和 () 的用法"></a>1. 关于<code>{}</code> 和 <code>()</code> 的用法</h3><blockquote>
+<p><code>{}</code>  主要用途</p>
+</blockquote>
+<ul>
+<li>对于库中非默认组件例如</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>包装对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">container: &#123;</span><br><span class="line">    flex: 1,</span><br><span class="line">    justifyContent: &apos;center&apos;,// 主轴的对齐方式</span><br><span class="line">    alignItems: &apos;center&apos;,// 侧轴的对齐方式</span><br><span class="line">    backgroundColor: &apos;#F5FCFF&apos;,</span><br><span class="line">    marginTop:20,</span><br><span class="line">    flexDirection:&apos;row-reverse&apos;,// xy 轴</span><br><span class="line">    flexWrap:&apos;wrap&apos;// 是否换行</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于引用变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = 1,</span><br><span class="line">&lt;Text&gt;&#123;a&#125;&lt;/Text&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>表达式都需要</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>数字需要用 <code>{}</code>包装</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;1&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>()</code> 主要用途</p>
+</blockquote>
+<ul>
+<li>包装组件标签时候</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(</span><br><span class="line">   &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">     &lt;/View&gt;</span><br><span class="line"> );</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>,</code> 的使用<br>当在分割对象时候使用功能<code>,</code></p>
+</blockquote>
+<h3 id="2-CSS-布局"><a href="#2-CSS-布局" class="headerlink" title="2. CSS 布局"></a>2. CSS 布局</h3><p><em>决定一个子控件的布局</em></p>
+<blockquote>
+<p>基本的CSS布局</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: 1,// flex = 1 全屏占据</span><br><span class="line">    justifyContent: &apos;center&apos;,// 主轴的对齐方式</span><br><span class="line">    alignItems: &apos;center&apos;,// 侧轴的对齐方式</span><br><span class="line">    backgroundColor: &apos;#F5FCFF&apos;,</span><br><span class="line">      marginTop:20,</span><br><span class="line">      flexDirection:&apos;row-reverse&apos;,// xy 轴</span><br><span class="line">      flexWrap:&apos;wrap&apos;// 是否换行</span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  welcome: &#123;</span><br><span class="line">    fontSize: 20,</span><br><span class="line">    textAlign: &apos;center&apos;,</span><br><span class="line">    margin: 10,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>基本语法</p>
+</blockquote>
+<p><code>margin</code>,如果是第一个子控件,参照父控件;不是的话参照上一个控件;<br><code>border</code>,设置边框,包括颜色,宽度,圆角半径<em>Radius</em>;<br><code>padding</code>,内间距,针对子控件的位置处理,top, left,right,bottom;</p>
+<p><code>position</code>,让当前控件参照父控件 <strong>absolute</strong>,之后可添加Bottom,Right等参照父控件布局;<strong>relative</strong>,参照自己,相当于<strong>bounds</strong>;</p>
+<h3 id="3-flex布局"><a href="#3-flex布局" class="headerlink" title="3. flex布局"></a>3. flex布局</h3><p><em>针对多个控件的布局</em></p>
+<blockquote>
+<p>主轴/侧轴 : 垂直关系,默认主轴为column方向</p>
+</blockquote>
+<p><code>flexDirection</code> 主轴方向,row 从左向右,column 自上而下,row-reverse | column-reverse 反转;<br><code>flexWrap</code> 布局是否可以换行, wrap 换行,nowrap,不换行(默认的);<br><code>justifyContent</code> center,flex-end,flex-start,space-between(每个间距都是一样的),space-around(两边间距是中间间距的一半);<br><code>alignItems</code> 决定侧轴的位置,flex-end,flex-start,center,stretch(拉升,在侧轴方向上全部拉伸,可填满 );<br><code>alignSelf</code> 单独设置一个控件的布局;<br><code>flex</code> 决定主轴中平均分成几部分;</p>
+<ul>
+<li>主轴默认的flex = 1,侧轴默认是flex= stretch,子控件的flex的和就是主轴能分成几等分</li>
+</ul>
+<p><code>Props</code> 自定义属性,每个组件都有props属性,自动生成的属性都会放入这个里面;<em>不能再自己的组件中修改,只能在父控件总修改,修改时候会刷新界面</em>,需要在父控件中指定,内部不能修改;(会刷新界面)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">使用时候:</span><br><span class="line">1. &lt;HGL name = &quot;hgl&quot; age = &#123;18&#125;/&gt;</span><br><span class="line">2. 	&lt;View style = &#123;styles.HGL&#125;&gt;</span><br><span class="line">                &lt;Text&gt;</span><br><span class="line">		 名字 + &#123;this.props.name&#125; + 年龄 + &#123;this.props.age&#125;</span><br><span class="line">                &lt;/Text&gt;</span><br><span class="line">      &lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<p><code>state</code> 在内部修改属性,修改时候需要设置 ‘this.setState`方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">updataMoney()&#123;</span><br><span class="line"></span><br><span class="line">      var name = this.state.name;</span><br><span class="line">      name += 1000</span><br><span class="line">      this.setState(</span><br><span class="line">          &#123;</span><br><span class="line">              name : name</span><br><span class="line">          &#125;</span><br><span class="line">      );</span><br><span class="line">  &#125;</span><br><span class="line">  constructor(props)&#123;</span><br><span class="line">      super(props);</span><br><span class="line">      this.state = &#123;</span><br><span class="line">          name : 10</span><br><span class="line">      &#125;</span><br><span class="line">      setInterval(this.updataMoney.bind(this),1000);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-传值"><a href="#4-传值" class="headerlink" title="4. 传值"></a>4. 传值</h3><h4 id="1-正向传值"><a href="#1-正向传值" class="headerlink" title="1. 正向传值"></a>1. 正向传值</h4><ul>
+<li>setState</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Son ref = &quot;son&quot; name = &quot;sub&quot; getMoney = &#123;this.getMoney.bind(this)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p>使用ref 将该子控件作为属性记录;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sendMoney() &#123;</span><br><span class="line">        var son = this.refs.son;</span><br><span class="line">        var name = son.state.name;</span><br><span class="line">        son.setState(</span><br><span class="line">            &#123;</span><br><span class="line">                name : ++name</span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>使用this.refs.son 获取到ref引用的子控件,之后重写子控件的setState.</p>
+<h4 id="2-逆向传值"><a href="#2-逆向传值" class="headerlink" title="2. 逆向传值"></a>2. 逆向传值</h4><p>在父控件中定义方法,通过props中定义一个属性传给子控件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Son ref = &quot;son&quot; name = &quot;sub&quot; sonGetMoney = &#123;this.getMoney.bind(this)&#125;/&gt;</span><br></pre></td></tr></table></figure>
+<p>sonGetMoeny 为props中的一个属性,getMoney 为父控件的方法,提供给子控件进行调用.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">answer() &#123;</span><br><span class="line">       this.props.sonGetMoney(this.state.name)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>子控件在合适的方法中调研this.props.sonGetMoney,就是调用父控件的方法了.</p>
+<h4 id="3-没有关联控件间传值"><a href="#3-没有关联控件间传值" class="headerlink" title="3. 没有关联控件间传值"></a>3. 没有关联控件间传值</h4><p>使用通知进行传值,需要导入框架<code>DeviceEventEmitter</code>;<br>发通知:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeviceEventEmitter.emit(&quot;gege&quot;,100);</span><br></pre></td></tr></table></figure>
+<p>接受通知:(需要在constructor方法中进行添加)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DeviceEventEmitter.addListener(&quot;gege&quot;,this.getMoney.bind(this));</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/23/YYKit中使用的奇淫技巧/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -740,7 +930,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -753,7 +943,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
