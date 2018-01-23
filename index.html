@@ -303,19 +303,14 @@
       
         
           
-            <h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><ol>
-<li><code>tbz</code> test break zero ,</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x1000a6614 &lt;+84&gt;:  tbz    w11, #0x0, 0x1000a662c    ; &lt;+108&gt; at ViewController.m:35</span><br></pre></td></tr></table></figure>
+            <h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><h2 id="tbz-test-break-zero"><a href="#tbz-test-break-zero" class="headerlink" title="tbz  test break zero ,"></a><code>tbz</code>  test break zero ,</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x1000a6614 &lt;+84&gt;:  tbz    w11, #0x0, 0x1000a662c    ; &lt;+108&gt; at ViewController.m:35</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>   test  w11寄存器的第0bit位，。if (0){ b 0x1000a662c;};后面跟的#0x0是指第0位,如果其他啊的就是其他位</p>
 </blockquote>
-<ol>
-<li><code>adrp</code></li>
-</ol>
+<h2 id="adrp"><a href="#adrp" class="headerlink" title="adrp"></a><code>adrp</code></h2><p><em>可将一个立即值与 pc 值相加，并将结果写入目标寄存器。</em><br>语法<br>ADR{cond}{.W} Rd,label</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x1000ee720 &lt;+124&gt;: adrp   x0, 1</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>pc  低 12 位 清 0  + 0x1000,其实就是当前页往后一页的起始地址</p>
+<p>pc  低 12 位 清 0  + 0x1000,其实就是当前页往后一页的起始地址,相当于 add x0 ,pc,1.<br>低12位清零，相当于找到当前的页起始， 内存中有页对其大小，一般是0x1000  所以加一页就是 加  0x1000</p>
 </blockquote>
 
           
