@@ -184,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -260,7 +260,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T13:28:03+08:00">
                 2018-01-23
@@ -302,63 +302,47 @@
       
         
           
-            <h1 id="YYKit中使用的奇淫技巧"><a href="#YYKit中使用的奇淫技巧" class="headerlink" title="YYKit中使用的奇淫技巧"></a>YYKit中使用的奇淫技巧</h1><ol>
-<li>变量的修饰 <ol>
-<li>@package 本包内使用，跨包不可以 <code>YYTextLayout</code></li>
-<li>@protected 该类和所有子类中的方法可以直接访问这样的变量。</li>
-<li>@private 该类中的方法可以访问，子类不可以访问。</li>
-<li>@public   可以被所有的类访问</li>
-<li><code>UNAVAILABLE_ATTRIBUTE</code>告诉编译器该方法不可用，如果强行调用编译器会提示错误。比如某个类在构造的时候不想直接通过init来初始化，只能通过特定的初始化方法，就可以将init方法标记为unavailable。 </li>
-<li><code>NS_DESIGNATED_INITIALIZER</code> 告诉编译器使用的构造方法最终会调用的是该方法,但是这个方法实现时候也需要调用父类的designated_initiallizer方法,</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 实现 UIView 的 designed initializer</span><br><span class="line">- (instancetype)initWithCoder:(NSCoder *)aDecoder &#123;</span><br><span class="line">    return [self initWithVideoID:@0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 实现 UIView 的 designed initializer</span><br><span class="line">- (instancetype)initWithFrame:(CGRect)frame &#123;</span><br><span class="line">    return [self initWithVideoID:@0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 实现自己的 designed initializer</span><br><span class="line">- (instancetype)initWithVideoID:(NSNumber *)videoID &#123;</span><br><span class="line">    // 这里在调用 super 的初始化方法时，就不能调用 init，因为 init 不是 UIView 的 designed initializer</span><br><span class="line">    self = [super initWithFrame:CGRectZero];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        self.videoID = videoID;</span><br><span class="line">        [self setupUI];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>关键字</p>
-<ol>
-<li><p><code>__VA_ARGS__</code> </p>
-<p> 例如 <code>#define debug(...) printf(__VA_ARGS__)</code>,使用保留名 <code>__VA_ARGS__</code> 把参数传递给宏</p>
-</li>
-<li><code>__FLT_MAX__</code> float 的最大值</li>
-<li><p><code>__kindof</code>    规定参数为UITableViewCell这个类或者其子类。比如说一个NSArray &lt; UIView<em> &gt;</em>,如果不加__kindof，这个数组只能有UIView,即便是其子类也不行。而加了的话，传入UIImageView或者UIButton之类的不会有问题。</p>
-<p> <code>__typeof__(var)</code> 是gcc对C语言的一个扩展保留字，用于声明变量类型,var可以是数据类型（int， char*..),也可以是变量表达式。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__typeof__(int *) x; //It   is   equivalent   to  &apos;int  *x&apos;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>inline</code> 内联函数,</p>
-</li>
-<li><code>round</code> 四舍五入函数, 例如 : <code>round(1.499900) is 1.000000</code>,取整数</li>
-<li><code>fabs</code>绝对值 求浮点数x的绝对值,计算|x|, 当x不为负时返回 x，否则返回 -x</li>
-<li><code>extern</code> \ <code>static</code>,使用static修饰，该函数只能被当前源文件中的其它函数调用。使用extern修饰，该函数可以被任何源文件中的其它函数调用。</li>
-<li><code>NS_ASSUME_NONNULL_BEGIN</code> <code>NS_ASSUME_NONNULL_END</code>,这两个关键词中间所有的指针类型的参数都不能为空</li>
-<li><code>FOUNDATION_EXPORT</code>等同于 <code>#define</code></li>
-</ol>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在.h中这么定义,</span><br><span class="line">FOUNDATION_EXPORT NSString * const kMyConstantString; </span><br><span class="line">在.m中实现</span><br><span class="line">NSString * const kMyConstantString = @&quot;Hello&quot;;</span><br><span class="line">等同于 `#define kMyConstantString @&quot;Hello&quot;` </span><br><span class="line">使用时候可以 (stringInstance == MyFirstConstant)而define则使用的是这种.([stringInstance isEqualToString:MyFirstConstant])</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>方法</p>
-<ol>
-<li>CGRectUnion 返回能过包含两个矩形的最小矩形</li>
-<li>CGContextSaveGState 把之前对上下文的操作拷贝一份推到堆栈上</li>
-<li>CGContextRestoreGState 把之前拷贝一份推到堆栈上的上下文取出来</li>
-<li>CGContextSetFillColorWithColor 定制要填充路径的颜色</li>
-<li>CGContextSetStrokeColorWithColor 定制要描边路径的颜色</li>
-<li>CGContextSetLineWidth</li>
-<li>CGContextSetTextDrawingMode 每个符号的绘制方式,绘制文字的方式</li>
-<li>CGContextAddEllipseInRect 画椭圆</li>
-<li>CGContextSetTextPosition 需要绘制文本的位置</li>
-<li>CGContextSetLineDash 设置图形上下文中的虚线的模式。</li>
-</ol>
-</li>
-<li><p>C语言函数</p>
-<ol>
+            <h1 id="变量的修饰"><a href="#变量的修饰" class="headerlink" title="变量的修饰"></a>变量的修饰</h1><pre><code>1. @package 本包内使用，跨包不可以 `YYTextLayout`
+2. @protected 该类和所有子类中的方法可以直接访问这样的变量。
+3. @private 该类中的方法可以访问，子类不可以访问。
+4. @public   可以被所有的类访问
+5. `UNAVAILABLE_ATTRIBUTE`告诉编译器该方法不可用，如果强行调用编译器会提示错误。比如某个类在构造的时候不想直接通过init来初始化，只能通过特定的初始化方法，就可以将init方法标记为unavailable。 
+6. `NS_DESIGNATED_INITIALIZER` 告诉编译器使用的构造方法最终会调用的是该方法,但是这个方法实现时候也需要调用父类的designated_initiallizer方法,
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 实现 UIView 的 designed initializer</span><br><span class="line">- (instancetype)initWithCoder:(NSCoder *)aDecoder &#123;</span><br><span class="line">    return [self initWithVideoID:@0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 实现 UIView 的 designed initializer</span><br><span class="line">- (instancetype)initWithFrame:(CGRect)frame &#123;</span><br><span class="line">    return [self initWithVideoID:@0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 实现自己的 designed initializer</span><br><span class="line">- (instancetype)initWithVideoID:(NSNumber *)videoID &#123;</span><br><span class="line">    // 这里在调用 super 的初始化方法时，就不能调用 init，因为 init 不是 UIView 的 designed initializer</span><br><span class="line">    self = [super initWithFrame:CGRectZero];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        self.videoID = videoID;</span><br><span class="line">        [self setupUI];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><pre><code>1. `__VA_ARGS__` 
+
+    例如 `#define debug(...) printf(__VA_ARGS__)`,使用保留名 `__VA_ARGS__` 把参数传递给宏
+2. `__FLT_MAX__` float 的最大值
+3. `__kindof`    规定参数为UITableViewCell这个类或者其子类。比如说一个NSArray &lt; UIView* &gt;*,如果不加__kindof，这个数组只能有UIView,即便是其子类也不行。而加了的话，传入UIImageView或者UIButton之类的不会有问题。
+
+    `__typeof__(var)` 是gcc对C语言的一个扩展保留字，用于声明变量类型,var可以是数据类型（int， char*..),也可以是变量表达式。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__typeof__(int *) x; //It   is   equivalent   to  &apos;int  *x&apos;;</span><br></pre></td></tr></table></figure>
+<pre><code>4. `inline` 内联函数,
+5. `round` 四舍五入函数, 例如 : `round(1.499900) is 1.000000`,取整数
+6. `fabs`绝对值 求浮点数x的绝对值,计算|x|, 当x不为负时返回 x，否则返回 -x
+7. `extern` \ `static`,使用static修饰，该函数只能被当前源文件中的其它函数调用。使用extern修饰，该函数可以被任何源文件中的其它函数调用。
+8. `NS_ASSUME_NONNULL_BEGIN` `NS_ASSUME_NONNULL_END`,这两个关键词中间所有的指针类型的参数都不能为空
+9. `FOUNDATION_EXPORT`等同于 `#define`
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在.h中这么定义,</span><br><span class="line">FOUNDATION_EXPORT NSString * const kMyConstantString; </span><br><span class="line">在.m中实现</span><br><span class="line">NSString * const kMyConstantString = @&quot;Hello&quot;;</span><br><span class="line">等同于 `#define kMyConstantString @&quot;Hello&quot;` </span><br><span class="line">使用时候可以 (stringInstance == MyFirstConstant)而define则使用的是这种.([stringInstance isEqualToString:MyFirstConstant])</span><br></pre></td></tr></table></figure>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><pre><code>1. CGRectUnion 返回能过包含两个矩形的最小矩形
+3. CGContextSaveGState 把之前对上下文的操作拷贝一份推到堆栈上
+4. CGContextRestoreGState 把之前拷贝一份推到堆栈上的上下文取出来
+4. CGContextSetFillColorWithColor 定制要填充路径的颜色
+5. CGContextSetStrokeColorWithColor 定制要描边路径的颜色
+6. CGContextSetLineWidth
+7. CGContextSetTextDrawingMode 每个符号的绘制方式,绘制文字的方式
+8. CGContextAddEllipseInRect 画椭圆
+9. CGContextSetTextPosition 需要绘制文本的位置
+10. CGContextSetLineDash 设置图形上下文中的虚线的模式。
+</code></pre><ol>
+<li>C语言函数<ol>
 <li><code>calloc</code>在内存动态存储区中分配n块长度为“size”字节的连续区域。函数的返回值为该区域的首地址。(类型说明符<em>)用于强制类型转换。calloc函数与malloc 函数的区别仅在于一次可以分配n块区域。例如： ps=(struet stu</em>) calloc(2,sizeof (struct stu)); 其中的sizeof(struct stu)是求stu的结构长度。因此该语句的意思是：按stu的长度分配2块连续区域，强制转换为stu类型，并把其首地址赋予指针变量ps。</li>
 <li><code>malloc</code> 它允许从空间内存池中分配内存,malloc()的参数是一个指定所需字节数的整数.<br>例如:P=(int<em>)malloc(n</em>sizeof(int));<br>colloc与malloc类似,但是主要的区别是存储在已分配的内存空间中的值默认为0,使用malloc时,已分配的内存中可以是任意的值.<br>colloc需要两个参数,第一个是需要分配内存的变量的个数,第二个是每个变量的大小.<br>例如:P=(int*)colloc(n,colloc(int));</li>
 </ol>
 </li>
 </ol>
-<pre><code>3. 忽略警告
+<pre><code># 其他问题
+## 忽略警告
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Wcovered-switch-default&quot;</span><br><span class="line">switch (style) &#123;</span><br><span class="line">    case UITableViewCellStyleDefault:</span><br><span class="line">    case UITableViewCellStyleValue1:</span><br><span class="line">    case UITableViewCellStyleValue2:</span><br><span class="line">    case UITableViewCellStyleSubtitle:</span><br><span class="line">        // ...</span><br><span class="line">    default:</span><br><span class="line">        return;</span><br><span class="line">&#125;</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
 
           
@@ -437,7 +421,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T21:50:31+08:00">
                 2018-01-21
@@ -556,7 +540,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T21:28:11+08:00">
                 2018-01-21
@@ -675,7 +659,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-21T21:23:30+08:00">
                 2018-01-21
@@ -794,7 +778,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-20T10:31:17+08:00">
                 2018-01-20
@@ -922,7 +906,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-16T15:19:08+08:00">
                 2017-05-16
@@ -1104,7 +1088,7 @@ gitalk.render(&apos;gitalk-container&apos;);
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-16T15:19:08+08:00">
                 2017-05-16
@@ -1240,7 +1224,7 @@ gitalk.render(&apos;gitalk-container&apos;);
                 <a href="/archives/">
               
                   <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1253,7 +1237,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 
               </div>
             
@@ -1299,7 +1283,7 @@ gitalk.render(&apos;gitalk-container&apos;);
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
