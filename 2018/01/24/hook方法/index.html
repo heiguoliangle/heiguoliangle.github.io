@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="安装iOSopenDev失败 解决失败问题 失败原因    1Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain  title: 逆向学习遇到的坑及链接地址layout: post date: 2017-05-16 15:19:08 lldb语法官网">
+<meta name="description" content="CydiaSubstrate Hook CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。  MobileSubstrate 这个工具是control的默认依赖库,包含了MobileHooker,MobileLoader,Safe mode.MobileHooker 对 C OC 均有">
 <meta name="keywords" content="reverse">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向遇到的问题及解决办法">
-<meta property="og:url" content="https://heiguoliangle.github.io/2017/12/16/逆向遇到的问题/index.html">
+<meta property="og:title" content="hook方法">
+<meta property="og:url" content="https://heiguoliangle.github.io/2018/01/24/hook方法/index.html">
 <meta property="og:site_name" content="heiguoliangle">
-<meta property="og:description" content="安装iOSopenDev失败 解决失败问题 失败原因    1Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain  title: 逆向学习遇到的坑及链接地址layout: post date: 2017-05-16 15:19:08 lldb语法官网">
+<meta property="og:description" content="CydiaSubstrate Hook CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。  MobileSubstrate 这个工具是control的默认依赖库,包含了MobileHooker,MobileLoader,Safe mode.MobileHooker 对 C OC 均有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-23T05:39:09.176Z">
+<meta property="og:updated_time" content="2018-01-24T11:08:57.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向遇到的问题及解决办法">
-<meta name="twitter:description" content="安装iOSopenDev失败 解决失败问题 失败原因    1Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain  title: 逆向学习遇到的坑及链接地址layout: post date: 2017-05-16 15:19:08 lldb语法官网">
+<meta name="twitter:title" content="hook方法">
+<meta name="twitter:description" content="CydiaSubstrate Hook CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。  MobileSubstrate 这个工具是control的默认依赖库,包含了MobileHooker,MobileLoader,Safe mode.MobileHooker 对 C OC 均有">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://heiguoliangle.github.io/2017/12/16/逆向遇到的问题/"/>
+  <link rel="canonical" href="https://heiguoliangle.github.io/2018/01/24/hook方法/"/>
 
 
 
 
 
-  <title>逆向遇到的问题及解决办法 | heiguoliangle</title>
+  <title>hook方法 | heiguoliangle</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2017/12/16/逆向遇到的问题/">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/24/hook方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黑锅">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">逆向遇到的问题及解决办法</h1>
+          <h1 class="post-title" itemprop="name headline">hook方法</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-16T15:19:08+08:00">
-                2017-12-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-24T18:54:57+08:00">
+                2018-01-24
               </time>
             
 
@@ -300,18 +300,16 @@
       
 
       
-        <h1 id="安装iOSopenDev失败"><a href="#安装iOSopenDev失败" class="headerlink" title="安装iOSopenDev失败"></a>安装iOSopenDev失败</h1><ol>
-<li><a href="https://www.ianisme.com/ios/2319.html" target="_blank" rel="noopener">解决失败问题</a><ol>
-<li>失败原因</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain</span><br></pre></td></tr></table></figure>
-<hr>
-<p>title: 逆向学习遇到的坑及链接地址<br>layout: post</p>
-<h2 id="date-2017-05-16-15-19-08"><a href="#date-2017-05-16-15-19-08" class="headerlink" title="date: 2017-05-16 15:19:08"></a>date: 2017-05-16 15:19:08</h2><ol>
-<li><a href="https://lldb.llvm.org/lldb-gdb.html" target="_blank" rel="noopener">lldb语法官网</a></li>
-</ol>
+        <h1 id="CydiaSubstrate-Hook"><a href="#CydiaSubstrate-Hook" class="headerlink" title="CydiaSubstrate Hook"></a>CydiaSubstrate Hook</h1><blockquote>
+<p>CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。</p>
+</blockquote>
+<p><code>MobileSubstrate</code> 这个工具是<code>control</code>的默认依赖库,包含了<code>MobileHooker</code>,<code>MobileLoader</code>,<code>Safe mode</code>.<br><code>MobileHooker</code> 对 C OC 均有效.包含了<code>MSHookMessageEx</code>,<code>MSHookFunction</code>两个函数,其中<code>MSHookMessageEx</code>是对OC函数,实际采用的是runtime机制.<br><code>MSHookFunction</code>针对C/C++函数,对于C函数是在函数的开头修改了汇编指令，使其跳转到新的实现，执行完成后再返回执行原指令.</p>
+<h2 id="MSHookMessageEx"><a href="#MSHookMessageEx" class="headerlink" title="MSHookMessageEx"></a>MSHookMessageEx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void MSHookMessageEx(Class _class, SEL message, IMP hook, IMP *old);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>_class需要hook的oc函数的类名;message 需要hook的oc的函数sel;hook新的hook函数的具体实现的imp;*old旧的函数的地址,官方示例:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSString *(*oldDescription)(id self, SEL _cmd);</span><br><span class="line"></span><br><span class="line">// implicit self and _cmd are explicit with IMP ABI</span><br><span class="line">NSString *newDescription(id self, SEL _cmd) &#123;</span><br><span class="line">    NSString *description = (*oldDescription)(self, _cmd);</span><br><span class="line">    description = [description stringByAppendingString:@&quot;!&quot;];</span><br><span class="line">    return description;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MSHookMessageEx(</span><br><span class="line">    [NSObject class], @selector(description),</span><br><span class="line">    &amp;newDescription, &amp;oldDescription</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/3479f9632a6f" target="_blank" rel="noopener">网上教程</a></p>
 
       
     </div>
@@ -342,14 +340,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/23/汇编语言基础语法/" rel="next" title="汇编语言基础语法">
+                <i class="fa fa-chevron-left"></i> 汇编语言基础语法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/17/终端常用语法/" rel="prev" title="逆向时终端语法">
-                逆向时终端语法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/31/svn命令/" rel="prev" title="svn命令">
+                svn命令 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -473,7 +475,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装iOSopenDev失败"><span class="nav-number">1.</span> <span class="nav-text">安装iOSopenDev失败</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#date-2017-05-16-15-19-08"><span class="nav-number">1.1.</span> <span class="nav-text">date: 2017-05-16 15:19:08</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CydiaSubstrate-Hook"><span class="nav-number">1.</span> <span class="nav-text">CydiaSubstrate Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MSHookMessageEx"><span class="nav-number">1.1.</span> <span class="nav-text">MSHookMessageEx</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -232,6 +232,273 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/31/svn命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑锅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="heiguoliangle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/31/svn命令/" itemprop="url">svn命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-31T11:28:01+08:00">
+                2018-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用问题"><a href="#使用问题" class="headerlink" title="使用问题"></a>使用问题</h1><h2 id="在svn-add-文件夹-命令后如果有文件被删除要commit时候会报错"><a href="#在svn-add-文件夹-命令后如果有文件被删除要commit时候会报错" class="headerlink" title="在svn add 文件夹 命令后如果有文件被删除要commit时候会报错"></a>在svn add 文件夹 命令后如果有文件被删除要commit时候会报错</h2><ol>
+<li><code>svn st</code> </li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?       异步队列测试</span><br></pre></td></tr></table></figure>
+<ol>
+<li><code>svn add 异步队列测试/</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">A         异步队列测试</span><br><span class="line">A         异步队列测试/异步队列测试.xcodeproj</span><br><span class="line">A         异步队列测试/异步队列测试.xcodeproj/project.pbxproj</span><br><span class="line">A         异步队列测试/异步队列测试</span><br><span class="line">A         异步队列测试/异步队列测试/ViewController.m</span><br><span class="line">A         异步队列测试/异步队列测试/Assets.xcassets</span><br><span class="line">A         异步队列测试/异步队列测试/Assets.xcassets/AppIcon.appiconset</span><br><span class="line">A         异步队列测试/异步队列测试/Assets.xcassets/AppIcon.appiconset/Contents.json</span><br><span class="line">A         异步队列测试/异步队列测试/Base.lproj</span><br><span class="line">A         异步队列测试/异步队列测试/Base.lproj/Main.storyboard</span><br><span class="line">A         异步队列测试/异步队列测试/Base.lproj/LaunchScreen.storyboard</span><br><span class="line">A         异步队列测试/异步队列测试/main.m</span><br><span class="line">A         异步队列测试/异步队列测试/AppDelegate.h</span><br><span class="line">.....</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在add之后将本地的某个文件删除后….</p>
+</blockquote>
+<ol>
+<li><code>svn commit -m &quot;234&quot;</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">svn: E155010: Commit failed (details follow):</span><br><span class="line">svn: E155010: &apos;/Users/guolianghao/Desktop/HD/Fakao-lib/publicLib/trunk/异步队列测试/异步队列测试.xcodeproj&apos; is scheduled for addition, but is missing</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">这个报错是由于`/Users/guolianghao/Desktop/HD/Fakao-lib/publicLib/trunk/异步队列测试/异步队列测试.xcodeproj`这个本地被删除了,提交SVN时候不能够识别的**解决办法**是</span><br></pre></td></tr></table></figure>
+<p>svn revert 异步队列测试 –depth infinity<br>```</p>
+<blockquote>
+<p>这里的<em>异步队列测试</em>是将这个add的文件夹脱离SVN的控制,需要重新add<br>如果在本地删除的仅仅是某个文件只需要使用 <code>svn revert 异步队列测试</code>命令即可,使用<code>--depth infinity</code>是将整个文件深度处理.</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/24/hook方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑锅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="heiguoliangle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/24/hook方法/" itemprop="url">hook方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-24T18:54:57+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CydiaSubstrate-Hook"><a href="#CydiaSubstrate-Hook" class="headerlink" title="CydiaSubstrate Hook"></a>CydiaSubstrate Hook</h1><blockquote>
+<p>CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。</p>
+</blockquote>
+<p><code>MobileSubstrate</code> 这个工具是<code>control</code>的默认依赖库,包含了<code>MobileHooker</code>,<code>MobileLoader</code>,<code>Safe mode</code>.<br><code>MobileHooker</code> 对 C OC 均有效.包含了<code>MSHookMessageEx</code>,<code>MSHookFunction</code>两个函数,其中<code>MSHookMessageEx</code>是对OC函数,实际采用的是runtime机制.<br><code>MSHookFunction</code>针对C/C++函数,对于C函数是在函数的开头修改了汇编指令，使其跳转到新的实现，执行完成后再返回执行原指令.</p>
+<h2 id="MSHookMessageEx"><a href="#MSHookMessageEx" class="headerlink" title="MSHookMessageEx"></a>MSHookMessageEx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void MSHookMessageEx(Class _class, SEL message, IMP hook, IMP *old);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>_class需要hook的oc函数的类名;message 需要hook的oc的函数sel;hook新的hook函数的具体实现的imp;*old旧的函数的地址,官方示例:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSString *(*oldDescription)(id self, SEL _cmd);</span><br><span class="line"></span><br><span class="line">// implicit self and _cmd are explicit with IMP ABI</span><br><span class="line">NSString *newDescription(id self, SEL _cmd) &#123;</span><br><span class="line">    NSString *description = (*oldDescription)(self, _cmd);</span><br><span class="line">    description = [description stringByAppendingString:@&quot;!&quot;];</span><br><span class="line">    return description;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MSHookMessageEx(</span><br><span class="line">    [NSObject class], @selector(description),</span><br><span class="line">    &amp;newDescription, &amp;oldDescription</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/3479f9632a6f" target="_blank" rel="noopener">网上教程</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/23/汇编语言基础语法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1059,7 +1326,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -1072,7 +1339,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">Tags</span>
                 
               </div>
