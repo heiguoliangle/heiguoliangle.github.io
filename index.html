@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -195,7 +195,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/08/Xcode中/">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/08/Xcode中 Launch Arguments与Environment Variables/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黑锅">
@@ -251,7 +251,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/08/Xcode中/" itemprop="url">Xcode中 Launch Arguments与Environment Variables</a></h1>
+                <a class="post-title-link" href="/2018/02/08/Xcode中 Launch Arguments与Environment Variables/" itemprop="url">Xcode中 Launch Arguments与Environment Variables</a></h1>
         
 
         <div class="post-meta">
@@ -261,7 +261,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T17:58:58+08:00">
                 2018-02-08
@@ -308,7 +308,7 @@
 <blockquote>
 <p><code>argc</code>  传入参数的个数,其实就是<code>argv[].Count</code><br><code>argv[]</code> 实际在配置中传入的参数</p>
 </blockquote>
-<p>例如我在xcode中的配置如下:<br><img src="/2018/02/08/Xcode中/Snip20180208_11.png" alt="argc配置"></p>
+<p>例如我在xcode中的配置如下:<br><img src="/2018/02/08/Xcode中 Launch Arguments与Environment Variables/Snip20180208_11.png" alt="argc配置"></p>
 <p>此时打印结果如下:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. /Users/guolianghao/Library/Developer/CoreSimulator/Devices/ADBFAF76-CFED-4B06-BC84-EF3942306CBC/data/Containers/Bundle/Application/C11A8B2A-DF43-4E6D-BD92-CDD149AD752E/MainTest.app/MainTest</span><br><span class="line">2. -heiguo</span><br><span class="line">3. heiguo</span><br><span class="line">4. -hh</span><br><span class="line">5. oo</span><br></pre></td></tr></table></figure>
 <p>第一个是该项目target的绝对路径,之后的便是自己配置的.<br><em>在配置的时候,使用 -需要配置的</em>这样配置,会默认将配置的值写入到<code>NSUserDefaults中的</code>使用如下两种查看都是可以的</p>
@@ -316,7 +316,7 @@
 <blockquote>
 <p>通过配置<em>Launch Arguments</em>参数可以在每次APP启动时对默认的参数进行配置</p>
 </blockquote>
-<h1 id="Environment-Variables"><a href="#Environment-Variables" class="headerlink" title="Environment Variables"></a>Environment Variables</h1><p><img src="/2018/02/08/Xcode中/Snip20180208_12.png" alt="配置Environment Variables"></p>
+<h1 id="Environment-Variables"><a href="#Environment-Variables" class="headerlink" title="Environment Variables"></a>Environment Variables</h1><p><img src="/2018/02/08/Xcode中 Launch Arguments与Environment Variables/Snip20180208_12.png" alt="配置Environment Variables"></p>
 <p>通过配置EnvironmentVariables 可以实现类似于Debug | release 等宏定义的效果,进行条件编译执行.<br>可以使用如下代码来使用:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *environment1 = [[NSProcessInfo processInfo] environment];</span><br><span class="line"> if (environment[@&quot;man&quot;]) &#123;</span><br><span class="line">     // Set server url with the value in the environment</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">     // Set the default one</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
@@ -396,7 +396,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T11:26:37+08:00">
                 2018-02-08
@@ -546,7 +546,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-31T14:20:49+08:00">
                 2018-01-31
@@ -700,7 +700,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-31T11:28:01+08:00">
                 2018-01-31
@@ -838,7 +838,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-24T18:54:57+08:00">
                 2018-01-24
@@ -967,7 +967,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T16:51:07+08:00">
                 2018-01-23
@@ -1095,7 +1095,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T13:44:34+08:00">
                 2018-01-23
@@ -1285,7 +1285,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T13:28:03+08:00">
                 2018-01-23
@@ -1448,7 +1448,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-17T15:19:08+08:00">
                 2017-12-17
@@ -1630,7 +1630,7 @@ gitalk.render(&apos;gitalk-container&apos;);
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-16T15:19:08+08:00">
                 2017-12-16
@@ -1766,7 +1766,7 @@ gitalk.render(&apos;gitalk-container&apos;);
                 <a href="/archives/">
               
                   <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1779,7 +1779,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 
               </div>
             
@@ -1825,7 +1825,7 @@ gitalk.render(&apos;gitalk-container&apos;);
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
