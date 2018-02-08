@@ -232,6 +232,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/08/Xcode中/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑锅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="heiguoliangle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/08/Xcode中/" itemprop="url">Xcode中 Launch Arguments与Environment Variables</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T17:58:58+08:00">
+                2018-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Launch-Arguments"><a href="#Launch-Arguments" class="headerlink" title="Launch Arguments"></a>Launch Arguments</h1><h2 id="main函数的"><a href="#main函数的" class="headerlink" title="main函数的"></a>main函数的</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line"></span><br><span class="line">    for (int i = 0; i &lt; argc; i ++) &#123;</span><br><span class="line">        printf(&quot;%s\n&quot;,argv[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>都知道main函数的启动传入两个参数,那这两个参数分别是什么?</p>
+<blockquote>
+<p><code>argc</code>  传入参数的个数,其实就是<code>argv[].Count</code><br><code>argv[]</code> 实际在配置中传入的参数</p>
+</blockquote>
+<p>例如我在xcode中的配置如下:<br><img src="/2018/02/08/Xcode中/Snip20180208_11.png" alt="argc配置"></p>
+<p>此时打印结果如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. /Users/guolianghao/Library/Developer/CoreSimulator/Devices/ADBFAF76-CFED-4B06-BC84-EF3942306CBC/data/Containers/Bundle/Application/C11A8B2A-DF43-4E6D-BD92-CDD149AD752E/MainTest.app/MainTest</span><br><span class="line">2. -heiguo</span><br><span class="line">3. heiguo</span><br><span class="line">4. -hh</span><br><span class="line">5. oo</span><br></pre></td></tr></table></figure>
+<p>第一个是该项目target的绝对路径,之后的便是自己配置的.<br><em>在配置的时候,使用 -需要配置的</em>这样配置,会默认将配置的值写入到<code>NSUserDefaults中的</code>使用如下两种查看都是可以的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if ([[[NSProcessInfo processInfo] arguments] containsObject:@&quot;-hh&quot;]) &#123;</span><br><span class="line">      NSLog(@&quot;hh&quot;);</span><br><span class="line">      // Load main screen</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  if ([[NSUserDefaults standardUserDefaults] valueForKey:@&quot;heiguo&quot;]) &#123;</span><br><span class="line">      NSLog(@&quot;heiguo在偏好设置里&quot;);</span><br><span class="line">      // Load main screen</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>通过配置<em>Launch Arguments</em>参数可以在每次APP启动时对默认的参数进行配置</p>
+</blockquote>
+<h1 id="Environment-Variables"><a href="#Environment-Variables" class="headerlink" title="Environment Variables"></a>Environment Variables</h1><p><img src="/2018/02/08/Xcode中/Snip20180208_12.png" alt="配置Environment Variables"></p>
+<p>通过配置EnvironmentVariables 可以实现类似于Debug | release 等宏定义的效果,进行条件编译执行.<br>可以使用如下代码来使用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSDictionary *environment1 = [[NSProcessInfo processInfo] environment];</span><br><span class="line"> if (environment[@&quot;man&quot;]) &#123;</span><br><span class="line">     // Set server url with the value in the environment</span><br><span class="line"> &#125; else &#123;</span><br><span class="line">     // Set the default one</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/08/swiftTips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1630,7 +1765,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -1643,7 +1778,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">Tags</span>
                 
               </div>
