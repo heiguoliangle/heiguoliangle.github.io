@@ -232,6 +232,310 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/08/swiftTips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑锅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="heiguoliangle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/08/swiftTips/" itemprop="url">swiftTips</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T11:26:37+08:00">
+                2018-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="map-amp-flatMap"><a href="#map-amp-flatMap" class="headerlink" title="map &amp; flatMap"></a>map &amp; flatMap</h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><h3 id="map函数的定义"><a href="#map函数的定义" class="headerlink" title="map函数的定义:"></a>map函数的定义:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public func map&lt;T&gt;(_ transform: (Element) throws -&gt; T) rethrows -&gt; [T]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这个是一个接受一个闭包参数,并且在闭包中返回一个集合元素类型<br>该函数返回的是一个当前调用集合所有元素经过处理后的集合</p>
+</blockquote>
+<h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><ol>
+<li><p>可以直接使用<code>$0</code> 来代表每个元素,并作为返回值.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let numbers = 1...3</span><br><span class="line">        let result = numbers.map &#123;</span><br><span class="line">            $0</span><br><span class="line">        &#125;</span><br><span class="line">        print(result)    //输出：[1, 2, 3]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作为闭包参数来返回,可以对每一个元素进行单独处理,并且在闭包内需要<code>return</code>,还需要特别的指定<code>Int</code>这个泛型的具体类型</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let result1 = numbers.map &#123; (element) -&gt; Int in</span><br><span class="line">            if element &lt; 3 &#123;</span><br><span class="line">                return element</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return 10</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">print(result1)    //输出：[1, 2, 10]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="flatmap"><a href="#flatmap" class="headerlink" title="flatmap"></a>flatmap</h2><h3 id="flatmap函数定义"><a href="#flatmap函数定义" class="headerlink" title="flatmap函数定义"></a>flatmap函数定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extension SequenceType &#123;</span><br><span class="line">    public func flatMap&lt;S : SequenceType&gt;(transform: (Self.Generator.Element) -&gt; S) </span><br><span class="line">         -&gt; [S.Generator.Element]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension SequenceType &#123;</span><br><span class="line">    public func flatMap&lt;T&gt;(transform: (Self.Generator.Element) -&gt; T?) </span><br><span class="line">         -&gt; [T]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>与map类似的,同样是一个闭包参数,返回单个元素<br>最终返回的类型调用函数数组(可以在闭包中对单个元素进行重新添加)</p>
+</blockquote>
+<h3 id="使用示例-1"><a href="#使用示例-1" class="headerlink" title="使用示例"></a>使用示例</h3><ol>
+<li>使用<code>$0</code></li>
+</ol>
+<p>使用的数组<code>let strs : [AnyObject?] = [&quot;23&quot; as AnyObject,&quot;43rf&quot; as AnyObject,nil,34 as AnyObject]</code></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let flat2 = strs.flatMap&#123;$0&#125;</span><br><span class="line">print(flat2) // [23, 43rf, 34]</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li><p>使用闭包处理</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let test = strs.flatMap &#123; (e) -&gt; Int? in</span><br><span class="line">            return e as? Int</span><br><span class="line">        &#125;</span><br><span class="line">print(test) // [34]</span><br><span class="line">let flat1 = strs.flatMap &#123; (e) -&gt; String? in</span><br><span class="line">  return e as? String</span><br><span class="line">&#125;</span><br><span class="line">print(flat1) // [&quot;23&quot;, &quot;43rf&quot;]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>将多维数组合并到一个数组中</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let arr = [[1, 2, 3], [6, 5, 4]]</span><br><span class="line">let brr = arr.flatMap &#123;</span><br><span class="line">    $0</span><br><span class="line">&#125;</span><br><span class="line">// brr = [1, 2, 3, 6, 5, 4]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/31/swift/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑锅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="heiguoliangle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/31/swift/" itemprop="url">swift</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-31T14:20:49+08:00">
+                2018-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="swift4-0-使用错误示例及解决办法"><a href="#swift4-0-使用错误示例及解决办法" class="headerlink" title="swift4.0 使用错误示例及解决办法"></a>swift4.0 使用错误示例及解决办法</h1><ol>
+<li><p><code>&#39;HGL_TitleViewStyle&#39; initializer is inaccessible due to &#39;internal&#39; protection level</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class HGL_TitleViewStyle &#123;</span><br><span class="line">    </span><br><span class="line">    public var titleViewHeight : CGFloat = 44</span><br><span class="line">    public var normalColor : UIColor = UIColor.blue</span><br><span class="line">    public var selectColor : UIColor = UIColor.orange</span><br><span class="line">    public var titleSize : CGFloat = 17</span><br><span class="line">    public var isScrollEnable = false</span><br><span class="line">    public var itemMargin : CGFloat = 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>创建类时候没有继承类,可修改为 <code>public class HGL_TitleViewStyle : NSObject</code></p>
+</blockquote>
+<ol>
+<li><p><code>cannot invoke initializer for type with an argument list of type swift</code></p>
+<blockquote>
+<p>由于使用了没有权限的初始化方法,导致编译器找不到该方法,将该方法暴露,使用<code>public</code>关键字即可</p>
+</blockquote>
+</li>
+<li><p>`No such module ‘’</p>
+<blockquote>
+<p>由于使用的是podspec模式,在写子模块时候,调用到了其他的模块时候,不能再podfile中直接使用<code>pod install</code>,而应该是在spec中添加<code>dependency</code></p>
+</blockquote>
+</li>
+<li><p><code>Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc failed with exit code 1</code></p>
+<blockquote>
+<p>这个问题是由于在写子组件时候,物理删除了文件,但是在pod里面还有应用就报错,将pod中的引用删除即可</p>
+</blockquote>
+</li>
+<li><p>` Use of unresolved identifier ‘HD_TSShoppingCellModel’</p>
+<blockquote>
+<p>在编写pod字库时候,在本地文件已经存在,但是在项目的pod里面并未引用到的,需要重新 <code>pod install</code>即可</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="nav-是否隐藏问题"><a href="#nav-是否隐藏问题" class="headerlink" title="nav 是否隐藏问题"></a>nav 是否隐藏问题</h1><p>在自定义导航栏时候滑动滑返回时候由于导航栏是否隐藏需要使用 <code>setNavigationBarHidden</code>来设置,在设置<code>setNavigationBarHidden</code>之后,会关闭系统默认的右滑手势,需要手动开启,使用<code>navigationController?.interactivePopGestureRecognizer?.delegate = self</code>方法将滑动权限交由控制器本身<strong>animated必须是TRUE,否则不起作用!!!</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()      </span><br><span class="line">navigationController?.interactivePopGestureRecognizer?.delegate = self</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">override func viewWillAppear(_ animated: Bool) &#123;</span><br><span class="line">   super.viewWillAppear(animated)</span><br><span class="line">   navigationController?.setNavigationBarHidden(true, animated: false)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">override func viewWillDisappear(_ animated: Bool) &#123;</span><br><span class="line">   super.viewWillAppear(animated)          	navigationController?.setNavigationBarHidden(false, animated: false)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">extension HD_TSSearchVC : UIGestureRecognizerDelegate&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="在违常理的方法调用顺序上-有可能是方法循环调用"><a href="#在违常理的方法调用顺序上-有可能是方法循环调用" class="headerlink" title="在违常理的方法调用顺序上,有可能是方法循环调用"></a>在违常理的方法调用顺序上,有可能是方法循环调用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">系统的右滑手势取消后还会调用viewWillDisappear</span><br><span class="line">viewDidDisappear这两个方法</span><br><span class="line"> override func viewWillDisappear(_ animated: Bool) &#123;</span><br><span class="line">       navigationController?.setNavigationBarHidden(false, animated: true)</span><br><span class="line">        super.viewWillAppear(animated)</span><br><span class="line">        print(&quot;viewWillDisappear&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这个是原因是由于调用super时候调错了方法,在<code>viewWillDisappear</code>中调用了<code>super.viewWillAppear</code>,导致错误如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">viewWillDisappear 第一次调用,正常</span><br><span class="line">viewWillDisappear 由于调用了super.viewWillAppear后,当前方法是viewWillDisappear,导致按照生命周期流程继续往下调用,直到viewDidDisappear</span><br><span class="line">viewDidDisappear</span><br><span class="line"></span><br><span class="line">UIKit 是个黑盒，这一套生命周期的流程只是一套承诺，一套抽象，他承诺在 view 将会消失的时候调用 viewWillAppear，但你在错误的地方调用了错误的方法，会发生什么就只取决于它的具体实现，这一套实现有可能在 iOS 11 会像你说的这样，但在 iOS 9 或者 iOS 12 里也许就会完全不一样</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/31/svn命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1326,7 +1630,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -1339,7 +1643,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">Tags</span>
                 
               </div>

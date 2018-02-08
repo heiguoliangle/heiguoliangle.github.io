@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="reverse," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="CydiaSubstrate Hook CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。  MobileSubstrate 这个工具是control的默认依赖库,包含了MobileHooker,MobileLoader,Safe mode.MobileHooker 对 C OC 均有">
-<meta name="keywords" content="reverse">
+<meta name="description" content="swift4.0 使用错误示例及解决办法 &amp;#39;HGL_TitleViewStyle&amp;#39; initializer is inaccessible due to &amp;#39;internal&amp;#39; protection level  123456789public class HGL_TitleViewStyle &amp;#123;        public var titleViewHei">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hook方法">
-<meta property="og:url" content="https://heiguoliangle.github.io/2018/01/24/hook方法/index.html">
+<meta property="og:title" content="swift">
+<meta property="og:url" content="https://heiguoliangle.github.io/2018/01/31/swift/index.html">
 <meta property="og:site_name" content="heiguoliangle">
-<meta property="og:description" content="CydiaSubstrate Hook CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。  MobileSubstrate 这个工具是control的默认依赖库,包含了MobileHooker,MobileLoader,Safe mode.MobileHooker 对 C OC 均有">
+<meta property="og:description" content="swift4.0 使用错误示例及解决办法 &amp;#39;HGL_TitleViewStyle&amp;#39; initializer is inaccessible due to &amp;#39;internal&amp;#39; protection level  123456789public class HGL_TitleViewStyle &amp;#123;        public var titleViewHei">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-24T11:08:57.776Z">
+<meta property="og:updated_time" content="2018-02-02T08:27:27.075Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hook方法">
-<meta name="twitter:description" content="CydiaSubstrate Hook CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。  MobileSubstrate 这个工具是control的默认依赖库,包含了MobileHooker,MobileLoader,Safe mode.MobileHooker 对 C OC 均有">
+<meta name="twitter:title" content="swift">
+<meta name="twitter:description" content="swift4.0 使用错误示例及解决办法 &amp;#39;HGL_TitleViewStyle&amp;#39; initializer is inaccessible due to &amp;#39;internal&amp;#39; protection level  123456789public class HGL_TitleViewStyle &amp;#123;        public var titleViewHei">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://heiguoliangle.github.io/2018/01/24/hook方法/"/>
+  <link rel="canonical" href="https://heiguoliangle.github.io/2018/01/31/swift/"/>
 
 
 
 
 
-  <title>hook方法 | heiguoliangle</title>
+  <title>swift | heiguoliangle</title>
   
 
 
@@ -233,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/24/hook方法/">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/01/31/swift/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黑锅">
@@ -250,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hook方法</h1>
+          <h1 class="post-title" itemprop="name headline">swift</h1>
         
 
         <div class="post-meta">
@@ -262,8 +261,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-24T18:54:57+08:00">
-                2018-01-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-31T14:20:49+08:00">
+                2018-01-31
               </time>
             
 
@@ -300,16 +299,41 @@
       
 
       
-        <h1 id="CydiaSubstrate-Hook"><a href="#CydiaSubstrate-Hook" class="headerlink" title="CydiaSubstrate Hook"></a>CydiaSubstrate Hook</h1><blockquote>
-<p>CydiaSubstrate，iOS7越狱之前名为 MobileSubstrate（简称为MS或MS框架），作者为大名鼎鼎的Jay Freeman(saurik)。</p>
-</blockquote>
-<p><code>MobileSubstrate</code> 这个工具是<code>control</code>的默认依赖库,包含了<code>MobileHooker</code>,<code>MobileLoader</code>,<code>Safe mode</code>.<br><code>MobileHooker</code> 对 C OC 均有效.包含了<code>MSHookMessageEx</code>,<code>MSHookFunction</code>两个函数,其中<code>MSHookMessageEx</code>是对OC函数,实际采用的是runtime机制.<br><code>MSHookFunction</code>针对C/C++函数,对于C函数是在函数的开头修改了汇编指令，使其跳转到新的实现，执行完成后再返回执行原指令.</p>
-<h2 id="MSHookMessageEx"><a href="#MSHookMessageEx" class="headerlink" title="MSHookMessageEx"></a>MSHookMessageEx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void MSHookMessageEx(Class _class, SEL message, IMP hook, IMP *old);</span><br></pre></td></tr></table></figure>
+        <h1 id="swift4-0-使用错误示例及解决办法"><a href="#swift4-0-使用错误示例及解决办法" class="headerlink" title="swift4.0 使用错误示例及解决办法"></a>swift4.0 使用错误示例及解决办法</h1><ol>
+<li><p><code>&#39;HGL_TitleViewStyle&#39; initializer is inaccessible due to &#39;internal&#39; protection level</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class HGL_TitleViewStyle &#123;</span><br><span class="line">    </span><br><span class="line">    public var titleViewHeight : CGFloat = 44</span><br><span class="line">    public var normalColor : UIColor = UIColor.blue</span><br><span class="line">    public var selectColor : UIColor = UIColor.orange</span><br><span class="line">    public var titleSize : CGFloat = 17</span><br><span class="line">    public var isScrollEnable = false</span><br><span class="line">    public var itemMargin : CGFloat = 20</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <blockquote>
-<p>_class需要hook的oc函数的类名;message 需要hook的oc的函数sel;hook新的hook函数的具体实现的imp;*old旧的函数的地址,官方示例:</p>
+<p>创建类时候没有继承类,可修改为 <code>public class HGL_TitleViewStyle : NSObject</code></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">NSString *(*oldDescription)(id self, SEL _cmd);</span><br><span class="line"></span><br><span class="line">// implicit self and _cmd are explicit with IMP ABI</span><br><span class="line">NSString *newDescription(id self, SEL _cmd) &#123;</span><br><span class="line">    NSString *description = (*oldDescription)(self, _cmd);</span><br><span class="line">    description = [description stringByAppendingString:@&quot;!&quot;];</span><br><span class="line">    return description;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MSHookMessageEx(</span><br><span class="line">    [NSObject class], @selector(description),</span><br><span class="line">    &amp;newDescription, &amp;oldDescription</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.jianshu.com/p/3479f9632a6f" target="_blank" rel="noopener">网上教程</a></p>
+<ol>
+<li><p><code>cannot invoke initializer for type with an argument list of type swift</code></p>
+<blockquote>
+<p>由于使用了没有权限的初始化方法,导致编译器找不到该方法,将该方法暴露,使用<code>public</code>关键字即可</p>
+</blockquote>
+</li>
+<li><p>`No such module ‘’</p>
+<blockquote>
+<p>由于使用的是podspec模式,在写子模块时候,调用到了其他的模块时候,不能再podfile中直接使用<code>pod install</code>,而应该是在spec中添加<code>dependency</code></p>
+</blockquote>
+</li>
+<li><p><code>Command /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc failed with exit code 1</code></p>
+<blockquote>
+<p>这个问题是由于在写子组件时候,物理删除了文件,但是在pod里面还有应用就报错,将pod中的引用删除即可</p>
+</blockquote>
+</li>
+<li><p>` Use of unresolved identifier ‘HD_TSShoppingCellModel’</p>
+<blockquote>
+<p>在编写pod字库时候,在本地文件已经存在,但是在项目的pod里面并未引用到的,需要重新 <code>pod install</code>即可</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="nav-是否隐藏问题"><a href="#nav-是否隐藏问题" class="headerlink" title="nav 是否隐藏问题"></a>nav 是否隐藏问题</h1><p>在自定义导航栏时候滑动滑返回时候由于导航栏是否隐藏需要使用 <code>setNavigationBarHidden</code>来设置,在设置<code>setNavigationBarHidden</code>之后,会关闭系统默认的右滑手势,需要手动开启,使用<code>navigationController?.interactivePopGestureRecognizer?.delegate = self</code>方法将滑动权限交由控制器本身<strong>animated必须是TRUE,否则不起作用!!!</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()      </span><br><span class="line">navigationController?.interactivePopGestureRecognizer?.delegate = self</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">override func viewWillAppear(_ animated: Bool) &#123;</span><br><span class="line">   super.viewWillAppear(animated)</span><br><span class="line">   navigationController?.setNavigationBarHidden(true, animated: false)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">override func viewWillDisappear(_ animated: Bool) &#123;</span><br><span class="line">   super.viewWillAppear(animated)          	navigationController?.setNavigationBarHidden(false, animated: false)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">extension HD_TSSearchVC : UIGestureRecognizerDelegate&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="在违常理的方法调用顺序上-有可能是方法循环调用"><a href="#在违常理的方法调用顺序上-有可能是方法循环调用" class="headerlink" title="在违常理的方法调用顺序上,有可能是方法循环调用"></a>在违常理的方法调用顺序上,有可能是方法循环调用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">系统的右滑手势取消后还会调用viewWillDisappear</span><br><span class="line">viewDidDisappear这两个方法</span><br><span class="line"> override func viewWillDisappear(_ animated: Bool) &#123;</span><br><span class="line">       navigationController?.setNavigationBarHidden(false, animated: true)</span><br><span class="line">        super.viewWillAppear(animated)</span><br><span class="line">        print(&quot;viewWillDisappear&quot;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这个是原因是由于调用super时候调错了方法,在<code>viewWillDisappear</code>中调用了<code>super.viewWillAppear</code>,导致错误如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">viewWillDisappear 第一次调用,正常</span><br><span class="line">viewWillDisappear 由于调用了super.viewWillAppear后,当前方法是viewWillDisappear,导致按照生命周期流程继续往下调用,直到viewDidDisappear</span><br><span class="line">viewDidDisappear</span><br><span class="line"></span><br><span class="line">UIKit 是个黑盒，这一套生命周期的流程只是一套承诺，一套抽象，他承诺在 view 将会消失的时候调用 viewWillAppear，但你在错误的地方调用了错误的方法，会发生什么就只取决于它的具体实现，这一套实现有可能在 iOS 11 会像你说的这样，但在 iOS 9 或者 iOS 12 里也许就会完全不一样</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -325,12 +349,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/reverse/" rel="tag"># reverse</a>
-          
-        </div>
-      
 
       
       
@@ -340,8 +358,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/23/汇编语言基础语法/" rel="next" title="汇编语言基础语法">
-                <i class="fa fa-chevron-left"></i> 汇编语言基础语法
+              <a href="/2018/01/31/svn命令/" rel="next" title="svn命令">
+                <i class="fa fa-chevron-left"></i> svn命令
               </a>
             
           </div>
@@ -350,8 +368,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/31/svn命令/" rel="prev" title="svn命令">
-                svn命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/08/swiftTips/" rel="prev" title="swiftTips">
+                swiftTips <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -475,7 +493,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CydiaSubstrate-Hook"><span class="nav-number">1.</span> <span class="nav-text">CydiaSubstrate Hook</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MSHookMessageEx"><span class="nav-number">1.1.</span> <span class="nav-text">MSHookMessageEx</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#swift4-0-使用错误示例及解决办法"><span class="nav-number">1.</span> <span class="nav-text">swift4.0 使用错误示例及解决办法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nav-是否隐藏问题"><span class="nav-number">2.</span> <span class="nav-text">nav 是否隐藏问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在违常理的方法调用顺序上-有可能是方法循环调用"><span class="nav-number">3.</span> <span class="nav-text">在违常理的方法调用顺序上,有可能是方法循环调用</span></a></li></ol></div>
             
 
           </div>
