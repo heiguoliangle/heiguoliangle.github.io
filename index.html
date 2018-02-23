@@ -232,6 +232,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/12/KVO-KVC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="黑锅">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="heiguoliangle">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/12/KVO-KVC/" itemprop="url">KVO-KVC</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-12T18:35:44+08:00">
+                2018-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>经常使用kvc或者kvo,但是没有文字性的总结,现在就来水一片吧…</p>
+</blockquote>
+<h1 id="KVC-Key-Value-Coding"><a href="#KVC-Key-Value-Coding" class="headerlink" title="KVC(Key-Value Coding)"></a>KVC(Key-Value Coding)</h1><p>先附上苹果爸爸的文档 : <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107-SW1" target="_blank" rel="noopener">kvc官方文档</a><br>简单的看看文档,kvc的作用一下几点:</p>
+<ul>
+<li>访问对象属性. 可以通过<code>getter valueForKey:</code>或者<code>getter valueForKey:</code>对对象的属性进行访问.</li>
+<li>处理集合问题. 如<code>NSDictionary</code></li>
+<li>….等等一些东西,可以参看文档<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/09/runtime普及/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -309,11 +437,14 @@
 <h2 id="id"><a href="#id" class="headerlink" title="id"></a>id</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef struct objc_object *id;</span><br></pre></td></tr></table></figure>
 <p><code>id</code>是<code>objc_object</code>这个结构体的指针</p>
 <h2 id="objc-object"><a href="#objc-object" class="headerlink" title="objc_object"></a>objc_object</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/// Represents an instance of a class.</span><br><span class="line">struct objc_object &#123;</span><br><span class="line">    Class isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="objc-class"><a href="#objc-class" class="headerlink" title="objc_class"></a>objc_class</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct objc_class : objc_object &#123;</span><br><span class="line">    // Class ISA;</span><br><span class="line">    Class superclass;</span><br><span class="line">    cache_t cache;             // formerly cache pointer and vtable</span><br><span class="line">    class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags</span><br><span class="line"></span><br><span class="line">    class_rw_t *data() &#123; // 主要的运行数据</span><br><span class="line">        return bits.data();</span><br><span class="line">    &#125;</span><br><span class="line">   ...下面一大堆方法</span><br></pre></td></tr></table></figure>
+<h2 id="objc-class"><a href="#objc-class" class="headerlink" title="objc_class"></a>objc_class</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct objc_class : objc_object &#123;</span><br><span class="line">    // Class ISA;</span><br><span class="line">    Class superclass;</span><br><span class="line">    cache_t cache;             // formerly cache pointer and vtable</span><br><span class="line">    class_data_bits_t bits;    // class_rw_t * plus custom rr/alloc flags // 实例方法链表</span><br><span class="line"></span><br><span class="line">    class_rw_t *data() &#123; // 主要的运行数据</span><br><span class="line">        return bits.data();</span><br><span class="line">    &#125;</span><br><span class="line">   ...下面一大堆方法</span><br></pre></td></tr></table></figure>
 <h2 id="ivar"><a href="#ivar" class="headerlink" title="ivar"></a>ivar</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/// An opaque type that represents an instance variable.</span><br><span class="line">typedef struct objc_ivar *Ivar;</span><br></pre></td></tr></table></figure>
 <p>ivar 是指向objc_ivar结构体的指针.</p>
 <h2 id="objc-ivar"><a href="#objc-ivar" class="headerlink" title="objc_ivar"></a>objc_ivar</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct objc_ivar &#123;</span><br><span class="line">    char *ivar_name                                          </span><br><span class="line">    char *ivar_type                                         </span><br><span class="line">    int ivar_offset                                          </span><br><span class="line">    int space                                                </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>objc_ivar</code> 这个是记录属性的名字,类型,地址偏移量,大小</p>
+<blockquote>
+<p>综合以上可以得出:<br><img src="/2018/02/09/runtime普及/23_6.png" alt="借用霜神大图"></p>
+</blockquote>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
 <p>通过上面这几个定义,可以理解成:</p>
 <ol>
@@ -323,6 +454,18 @@
 </ol>
 </blockquote>
 <p>例如当声明一个<code>Person</code>实例对象时,实际上是创建了一个指向<code>objc_class</code>结构体的指针.</p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><ol>
+<li><code>objc_object</code> 被typedef成为id类型.</li>
+<li><code>objc_class</code>继承自objc_object,这里包含了isa_t类型的结构体isa,还有父类指针(superclass),方法缓冲(cache),实例方法链表(bits).</li>
+<li><code>object</code> 类和NSObject类都包含一个<code>objc_class</code>的isa.</li>
+</ol>
+<ul>
+<li>当一个对象的实例方法被调用的时候,会通过isa找到对应的类,然后在该类的class_data_bits_t(即bits)中去查找方法.class_data_bits_t(即bits)是指向了类对象的数据区域,在这里查找相应方法的对应实现.</li>
+<li>当调用的是类方法时,引入了元类的概念(meta-class).</li>
+<li>对象的实例方法调用时,通过对象的isa在类获取方法实现,类对象的类方法调用时,通过类的isa获取<strong>元类</strong>中的方法实现.</li>
+<li>在<code>meta-class</code>中,存储了一个类中所有的类方法.每个类都有一个单独的<code>meta-class</code>.</li>
+</ul>
+<p><img src="/2018/02/09/runtime普及/23_7.png" alt="对象,类,元类之间的关系"></p>
 <h1 id="访问一个类的ivar"><a href="#访问一个类的ivar" class="headerlink" title="访问一个类的ivar"></a>访问一个类的ivar</h1><p>首先在回到<code>objc_class</code>来,因为这<code>objc_class</code>中才能够拿到ivar.<br><code>objc_class</code>中有一个<code>class_rw_t *data() {</code>的成员变量,这里保存的是// 主要的运行数据,他是<code>class_rw_t</code>这个类型的:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">struct class_rw_t &#123;</span><br><span class="line">    uint32_t flags;</span><br><span class="line">    uint32_t version;</span><br><span class="line"></span><br><span class="line">    const class_ro_t *ro;//程序运行时对程序二进制读取的副本数据</span><br><span class="line"></span><br><span class="line">    union &#123;</span><br><span class="line">        method_list_t **method_lists;  // RW_METHOD_ARRAY == 1</span><br><span class="line">        method_list_t *method_list;    // RW_METHOD_ARRAY == 0</span><br><span class="line">    &#125;;</span><br><span class="line">    struct chained_property_list *properties;</span><br><span class="line">    const protocol_list_t ** protocols;</span><br><span class="line"></span><br><span class="line">    Class firstSubclass;</span><br><span class="line">    Class nextSiblingClass;</span><br><span class="line"></span><br><span class="line">    char *demangledName;</span><br><span class="line"></span><br><span class="line">    void setFlags(uint32_t set) </span><br><span class="line">    &#123;</span><br><span class="line">        OSAtomicOr32Barrier(set, &amp;flags);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void clearFlags(uint32_t clear) </span><br><span class="line">    &#123;</span><br><span class="line">        OSAtomicXor32Barrier(clear, &amp;flags);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // set and clear must not overlap</span><br><span class="line">    void changeFlags(uint32_t set, uint32_t clear) </span><br><span class="line">    &#123;</span><br><span class="line">        assert((set &amp; clear) == 0);</span><br><span class="line"></span><br><span class="line">        uint32_t oldf, newf;</span><br><span class="line">        do &#123;</span><br><span class="line">            oldf = flags;</span><br><span class="line">            newf = (oldf | set) &amp; ~clear;</span><br><span class="line">        &#125; while (!OSAtomicCompareAndSwap32Barrier(oldf, newf, (volatile int32_t *)&amp;flags));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>在<code>class_rw_t</code>这个结构体中,有一个<code>class_ro_t</code>这里放的是运行数据的副本.</p>
@@ -354,6 +497,7 @@
 <blockquote>
 <p>((id(<em>)(id, SEL, id)) //(id(</em>)返回值;(id, SEL, id)调用者,方法名,传入参数类型<br>objc_msgSend) // 调用的方法为<code>objc_msgSend</code><br>(self, aSelector, anObject) // 调用者,方法名,传入参数</p>
 </blockquote>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p> <a href="https://halfrost.com/objc_runtime_isa_class/" target="_blank" rel="noopener">霜神博客</a><br> <a href="https://blog.ibireme.com/2013/11/25/objc-object/" target="_blank" rel="noopener">YY大神</a></p>
 
           
         
@@ -1583,188 +1727,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2017/12/17/终端常用语法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="黑锅">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="heiguoliangle">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/17/终端常用语法/" itemprop="url">逆向时终端语法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-17T15:19:08+08:00">
-                2017-12-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!-- Gitalk 评论 start  -->
-<!-- Link Gitalk 的支持文件  -->
-<p><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></p>
-<p><script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script> </p>
-<p><div id="gitalk-container"></div>     <script type="text/javascript"><br>    var gitalk = new Gitalk({</p>
-<pre><code>// gitalk的主要参数
-    clientID: c2f76735bcc99b8d4733,
-    clientSecret: 18b871c31a7c454791c3f1a3352475e3e0c5b5f8,
-    repo: heiguoliangle.github.io,
-    owner: heiguoliangle,
-    admin: [heiguoliangle],
-    id: &apos;window.location.pathname&apos;,
-
-});
-gitalk.render(&apos;gitalk-container&apos;);
-</code></pre><p></script><br><!-- Gitalk end --></p>
-<h1 id="终端常用语法"><a href="#终端常用语法" class="headerlink" title="终端常用语法"></a>终端常用语法</h1><ol>
-<li><code>ps -e</code> 查看每个模块的全路径</li>
-<li><code>ssh root@ip</code> 使用ssh 登录手机</li>
-<li><code>scp 需要拷贝的文件 要拷贝的文件路径</code></li>
-<li><code>cycript -p TargetApp</code> 对TargetApp进行注入</li>
-<li><code>image list -o -f</code> 查看APP加载模块</li>
-<li><p><code>debugserver *:3333 -a &quot;App&quot;</code> 开启APP的3333端口的监听</p>
-<ol>
-<li><code>debugserver -x backboard *:2343 路径</code></li>
-</ol>
-</li>
-<li><p><code>grep -r 检索条件 路径</code> 对某个路径下进行条件检索</p>
-</li>
-</ol>
-<h2 id="lldb-使用"><a href="#lldb-使用" class="headerlink" title="lldb 使用"></a>lldb 使用</h2><ol>
-<li><p><code>lldb</code> =&gt; xcode路径下lldb</p>
-</li>
-<li><p>process connect connect://iOSip:3333  针对手机上ip的3333端口进行lldb</p>
-</li>
-<li><code>br s -a address</code> 针对address下断点</li>
-<li><code>br dis</code> 禁用断点</li>
-<li><code>br en</code> 开启断点</li>
-<li><code>br del</code> 删除断点</li>
-<li><code>br com add 1</code> 针对1号断点进行命令追加,使用DONE结束追加命令,当断点1倍出发时候会调用追加的命令</li>
-<li><code>p</code> 打印出对象的类型,值,变量名 例如 (long) $2 = 1324,可以强行更改对象的类型</li>
-<li><code>po</code> 打印对象的值</li>
-<li><code>p/x</code> 以16进制的方式打印地址</li>
-<li><code>x/10</code> 打印出10个bite的数据</li>
-<li><code>ni</code> 不进入函数下一步</li>
-<li><code>si</code>进入函数下一步</li>
-<li><code>register write 寄存器 = 1</code> <code>expression 寄存器 = 1</code> 两个命令一样,修改寄存器的值为1</li>
-<li><code>register read 寄存器</code> <code>expression 寄存器</code> 读取寄存器</li>
-<li><p><code>frame info</code> 查看当前栈帧函数名,如果有参数这有参数,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">frame #1: 0x0000000106dff76b ArmDemo`-[ViewController viewDidLoad](self=0x00007fdd8940ebe0, _cmd=&quot;viewDidLoad&quot;) at ViewController.m:36</span><br><span class="line">	``` </span><br><span class="line">		</span><br><span class="line">			</span><br><span class="line">16. `frame variable` ,查看当前栈帧函数名,参数,函数内部局部变量</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>(ViewController *) self = 0x00007fdd8940ebe0<br>(SEL) _cmd = “b1:b2:b3:b4:b5:b6:b7:b8:b9:”<br>(int) b1 = 1<br>(int) b2 = 2<br>(int) b3 = 3<br>(int) b4 = 4<br>(int) b5 = 5<br>(int) b6 = 6<br>(int) b7 = 7<br>(int) b8 = 8<br>(int) b9 = 9<br>(int) c = 0<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">17. `frame select 0` 展示选择栈帧时部分代码</span><br></pre></td></tr></table></figure></p>
-<p>frame #0: 0x0000000106dff7e1 ArmDemo`-<a href="self=0x00007fdd8940ebe0, _cmd=&quot;b1:b2:b3:b4:b5:b6:b7:b8:b9:&quot;, b1=1, b2=2, b3=3, b4=4, b5=5, b6=6, b7=7, b8=8, b9=9">ViewController b1:b2:b3:b4:b5:b6:b7:b8:b9:</a> at ViewController.m:41<br>   38<br>   39      }<br>   40      - (int)b1:(int)b1 b2:(int)b2 b3:(int)b3 b4:(int)b4 b5:(int)b5 b6:(int)b6 b7:(int)b7 b8:(int)b8 b9:(int)b9{<br>-&gt; 41          int c = [4mb[0m1 + b2 + b3 + b4 + b5 + b6 + b7 + b8 + b9;<br>   42<br>   43          return c;<br>   44      }<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">18. `thread backtrace -c 5` 在当前线程中选择前5 个栈帧展示</span><br></pre></td></tr></table></figure></p>
-<pre><code>thread #1, queue = &apos;com.apple.main-thread&apos;, stop reason = breakpoint 23.1
-</code></pre><p>  frame #0: 0x0000000106dff7e1 ArmDemo<code>-[ViewController b1:b2:b3:b4:b5:b6:b7:b8:b9:](self=0x00007fdd8940ebe0, _cmd=&quot;b1:b2:b3:b4:b5:b6:b7:b8:b9:&quot;, b1=1, b2=2, b3=3, b4=4, b5=5, b6=6, b7=7, b8=8, b9=9) at ViewController.m:41 frame #1: 0x0000000106dff76b ArmDemo</code>-<a href="self=0x00007fdd8940ebe0, _cmd=&quot;viewDidLoad&quot;">ViewController viewDidLoad</a> at ViewController.m:36 frame #2: 0x00000001083c7d51 UIKit<code>[UIViewController loadViewIfRequired] + 1235
-    frame #3: 0x00000001083c819e UIKit</code>-[UIViewController view] + 27<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">19. `disassemble --frame` 反汇编当前栈帧`di -f`</span><br></pre></td></tr></table></figure></p>
-<p>(lldb) disassemble –frame<br>ArmDemo`-[ViewController b1:b2:b3:b4:b5:b6:b7:b8:b9:]:<br>    0x106dff7a0 &lt;+0&gt;:   pushq  %rbp<br>    0x106dff7a1 &lt;+1&gt;:   movq   %rsp, %rbp<br>    0x106dff7a4 &lt;+4&gt;:   pushq  %r14<br>    0x106dff7a6 &lt;+6&gt;:   pushq  %rbx<br>    0x106dff7a7 &lt;+7&gt;:   movl   0x30(%rbp), %eax<br>    0x106dff7aa &lt;+10&gt;:  movl   0x28(%rbp), %r10d<br>    0x106dff7ae &lt;+14&gt;:  movl   0x20(%rbp), %r11d<br>    0x106dff7b2 &lt;+18&gt;:  movl   0x18(%rbp), %ebx<br>    0x106dff7b5 &lt;+21&gt;:  movl   0x10(%rbp), %r14d<br>    0x106dff7b9 &lt;+25&gt;:  movq   %rdi, -0x18(%rbp)<br>    0x106dff7bd &lt;+29&gt;:  movq   %rsi, -0x20(%rbp)<br>    0x106dff7c1 &lt;+33&gt;:  movl   %edx, -0x24(%rbp)<br>    0x106dff7c4 &lt;+36&gt;:  movl   %ecx, -0x28(%rbp)<br>    0x106dff7c7 &lt;+39&gt;:  movl   %r8d, -0x2c(%rbp)<br>    0x106dff7cb &lt;+43&gt;:  movl   %r9d, -0x30(%rbp)<br>    0x106dff7cf &lt;+47&gt;:  movl   %r14d, -0x34(%rbp)<br>    0x106dff7d3 &lt;+51&gt;:  movl   %ebx, -0x38(%rbp)<br>    0x106dff7d6 &lt;+54&gt;:  movl   %r11d, -0x3c(%rbp)<br>    0x106dff7da &lt;+58&gt;:  movl   %r10d, -0x40(%rbp)<br>    0x106dff7de &lt;+62&gt;:  movl   %eax, -0x44(%rbp)<br>-&gt;  0x106dff7e1 &lt;+65&gt;:  movl   -0x24(%rbp), %eax<br>    0x106dff7e4 &lt;+68&gt;:  addl   -0x28(%rbp), %eax<br>    0x106dff7e7 &lt;+71&gt;:  addl   -0x2c(%rbp), %eax<br>    0x106dff7ea &lt;+74&gt;:  addl   -0x30(%rbp), %eax<br>    0x106dff7ed &lt;+77&gt;:  addl   -0x34(%rbp), %eax<br>    0x106dff7f0 &lt;+80&gt;:  addl   -0x38(%rbp), %eax<br>    0x106dff7f3 &lt;+83&gt;:  addl   -0x3c(%rbp), %eax<br>    0x106dff7f6 &lt;+86&gt;:  addl   -0x40(%rbp), %eax<br>    0x106dff7f9 &lt;+89&gt;:  addl   -0x44(%rbp), %eax<br>    0x106dff7fc &lt;+92&gt;:  movl   %eax, -0x48(%rbp)<br>    0x106dff7ff &lt;+95&gt;:  movl   -0x48(%rbp), %eax<br>    0x106dff802 &lt;+98&gt;:  popq   %rbx<br>    0x106dff803 &lt;+99&gt;:  popq   %r14<br>    0x106dff805 &lt;+101&gt;: popq   %rbp<br>    0x106dff806 &lt;+102&gt;: retq<br>    0x106dff807 &lt;+103&gt;: nopw   (%rax,%rax)<br>(lldb)<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">20. `disassemble --name test` 反汇编test方法 `di -n test`</span><br></pre></td></tr></table></figure></p>
-<p>(lldb) disassemble –name test<br>ArmDemo`-[ViewController test]:<br>    0x106dff830 &lt;+0&gt;:  pushq  %rbp<br>    0x106dff831 &lt;+1&gt;:  movq   %rsp, %rbp<br>    0x106dff834 &lt;+4&gt;:  subq   $0x20, %rsp<br>    0x106dff838 &lt;+8&gt;:  movq   %rdi, -0x8(%rbp)<br>    0x106dff83c &lt;+12&gt;: movq   %rsi, -0x10(%rbp)<br>    0x106dff840 &lt;+16&gt;: movq   -0x8(%rbp), %rsi<br>    0x106dff844 &lt;+20&gt;: movq   0x47e5(%rip), %rdi        ; “result”<br>    0x106dff84b &lt;+27&gt;: movq   %rdi, -0x20(%rbp)<br>    0x106dff84f &lt;+31&gt;: movq   %rsi, %rdi<br>    0x106dff852 &lt;+34&gt;: movq   -0x20(%rbp), %rsi<br>    0x106dff856 &lt;+38&gt;: callq  0x106e013f4               ; symbol stub for: objc_msgSend<br>    0x106dff85b &lt;+43&gt;: movl   %eax, -0x14(%rbp)<br>    0x106dff85e &lt;+46&gt;: movl   -0x14(%rbp), %eax<br>    0x106dff861 &lt;+49&gt;: addq   $0x20, %rsp<br>    0x106dff865 &lt;+53&gt;: popq   %rbp<br>    0x106dff866 &lt;+54&gt;: retq<br>        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">21. `image lookup -v --address 0x0000000106dfe000` 查看 *0x0000000106dfe000*这个模块上的详细信息</span><br></pre></td></tr></table></figure></p>
-<p>(lldb) image lookup -v –address 0x0000000106dfe000<br>      Address: ArmDemo[0x0000000100000000] (ArmDemo.__TEXT + 0)<br>      Summary: ArmDemo`_mh_execute_header<br>       Module: file = “/Users/guolianghao/Library/Developer/Xcode/DerivedData/ArmDemo-crbwjymsidrgejervyhgwvtufpbw/Build/Products/Debug-iphonesimulator/ArmDemo.app/ArmDemo”, arch = “x86_64”<br>       Symbol: id = {0x00000174}, range = [0x0000000106dfe000-0x0000000106dff6b0), mangled=”_mh_execute_header”<br>        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">#cycript 中语法</span><br><span class="line">1. `[[[UIApplication sharedApplication]keyWindow] recursiveDescription]` `[[UIApp keyWindow] recursiveDescription]`相同效果,展示当前界面下所有视图结构</span><br></pre></td></tr></table></figure></p>
-<p>[self.view recursiveDescription];<br>```</p>
-<h1 id="砸壳过程"><a href="#砸壳过程" class="headerlink" title="砸壳过程"></a>砸壳过程</h1><p><a href="http://www.cnblogs.com/ludashi/p/5725743.html" target="_blank" rel="noopener">砸壳</a></p>
-<p><a href="#终端常用语法">回到顶部</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1815,7 +1777,7 @@ gitalk.render(&apos;gitalk-container&apos;);
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
