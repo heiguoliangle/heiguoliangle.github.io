@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://heiguoliangle.github.io/2018/02/09/runtime普及/23_6.png">
 <meta property="og:image" content="https://heiguoliangle.github.io/2018/02/09/runtime普及/23_7.png">
-<meta property="og:updated_time" content="2018-02-23T06:27:26.159Z">
+<meta property="og:updated_time" content="2018-02-23T06:38:51.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="runtime普及">
 <meta name="twitter:description" content="runtime基本知识每次都有人问,什么是id,class,object,ivar…这里做一个总结啦.. class12/// An opaque type that represents an Objective-C class.typedef struct objc_class *Class; class是objc_class这个结构体的指针 id1typedef struct objc_ob">
@@ -189,7 +189,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -199,7 +199,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -263,7 +263,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-09T10:58:07+08:00">
                 2018-02-09
@@ -331,13 +331,20 @@
 <li><code>objc_class</code>继承自objc_object,这里包含了isa_t类型的结构体isa,还有父类指针(superclass),方法缓冲(cache),实例方法链表(bits).</li>
 <li><code>object</code> 类和NSObject类都包含一个<code>objc_class</code>的isa.</li>
 </ol>
-<ul>
+<h3 id="类-对象方法调用"><a href="#类-对象方法调用" class="headerlink" title="类,对象方法调用"></a>类,对象方法调用</h3><ul>
 <li>当一个对象的实例方法被调用的时候,会通过isa找到对应的类,然后在该类的class_data_bits_t(即bits)中去查找方法.class_data_bits_t(即bits)是指向了类对象的数据区域,在这里查找相应方法的对应实现.</li>
 <li>当调用的是类方法时,引入了元类的概念(meta-class).</li>
 <li>对象的实例方法调用时,通过对象的isa在类获取方法实现,类对象的类方法调用时,通过类的isa获取<strong>元类</strong>中的方法实现.</li>
 <li>在<code>meta-class</code>中,存储了一个类中所有的类方法.每个类都有一个单独的<code>meta-class</code>.</li>
 </ul>
-<p><img src="/2018/02/09/runtime普及/23_7.png" alt="对象,类,元类之间的关系"></p>
+<p><img src="/2018/02/09/runtime普及/23_7.png" alt="对象,类,元类之间的关系"><br><em>借用霜神的描述</em><br>实线是superclass的指针,虚线是isa指针</p>
+<ol>
+<li>root class 实际就是NSObject,NSObject没有超类,所以他的superclass为nil</li>
+<li>每一个Class都有一个唯一指向的Metaclass.</li>
+<li>rootclass(meta)的superclass指向rootclass(class),即NSObject,形成回路.</li>
+<li>每一个metaclass的isa都指向rootClass(meta).</li>
+<li><strong>类对象和元类对象都是唯一的,对象可以在运行时创建无数个.在main函数之前,类对象和元类对象已经被创建出来</strong></li>
+</ol>
 <h1 id="访问一个类的ivar"><a href="#访问一个类的ivar" class="headerlink" title="访问一个类的ivar"></a>访问一个类的ivar</h1><p>首先在回到<code>objc_class</code>来,因为这<code>objc_class</code>中才能够拿到ivar.<br><code>objc_class</code>中有一个<code>class_rw_t *data() {</code>的成员变量,这里保存的是// 主要的运行数据,他是<code>class_rw_t</code>这个类型的:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">struct class_rw_t &#123;</span><br><span class="line">    uint32_t flags;</span><br><span class="line">    uint32_t version;</span><br><span class="line"></span><br><span class="line">    const class_ro_t *ro;//程序运行时对程序二进制读取的副本数据</span><br><span class="line"></span><br><span class="line">    union &#123;</span><br><span class="line">        method_list_t **method_lists;  // RW_METHOD_ARRAY == 1</span><br><span class="line">        method_list_t *method_list;    // RW_METHOD_ARRAY == 0</span><br><span class="line">    &#125;;</span><br><span class="line">    struct chained_property_list *properties;</span><br><span class="line">    const protocol_list_t ** protocols;</span><br><span class="line"></span><br><span class="line">    Class firstSubclass;</span><br><span class="line">    Class nextSiblingClass;</span><br><span class="line"></span><br><span class="line">    char *demangledName;</span><br><span class="line"></span><br><span class="line">    void setFlags(uint32_t set) </span><br><span class="line">    &#123;</span><br><span class="line">        OSAtomicOr32Barrier(set, &amp;flags);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void clearFlags(uint32_t clear) </span><br><span class="line">    &#123;</span><br><span class="line">        OSAtomicXor32Barrier(clear, &amp;flags);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // set and clear must not overlap</span><br><span class="line">    void changeFlags(uint32_t set, uint32_t clear) </span><br><span class="line">    &#123;</span><br><span class="line">        assert((set &amp; clear) == 0);</span><br><span class="line"></span><br><span class="line">        uint32_t oldf, newf;</span><br><span class="line">        do &#123;</span><br><span class="line">            oldf = flags;</span><br><span class="line">            newf = (oldf | set) &amp; ~clear;</span><br><span class="line">        &#125; while (!OSAtomicCompareAndSwap32Barrier(oldf, newf, (volatile int32_t *)&amp;flags));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>在<code>class_rw_t</code>这个结构体中,有一个<code>class_ro_t</code>这里放的是运行数据的副本.</p>
@@ -466,10 +473,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -490,7 +497,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -503,7 +510,7 @@
               <div class="site-state-item site-state-tags">
                 
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Tags</span>
+                  <span class="site-state-item-name">tags</span>
                 
               </div>
             
@@ -535,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#runtime基本知识"><span class="nav-number">1.</span> <span class="nav-text">runtime基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#class"><span class="nav-number">1.1.</span> <span class="nav-text">class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#id"><span class="nav-number">1.2.</span> <span class="nav-text">id</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#objc-object"><span class="nav-number">1.3.</span> <span class="nav-text">objc_object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#objc-class"><span class="nav-number">1.4.</span> <span class="nav-text">objc_class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ivar"><span class="nav-number">1.5.</span> <span class="nav-text">ivar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#objc-ivar"><span class="nav-number">1.6.</span> <span class="nav-text">objc_ivar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">1.8.</span> <span class="nav-text">更新</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问一个类的ivar"><span class="nav-number">2.</span> <span class="nav-text">访问一个类的ivar</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用简单案例试验"><span class="nav-number">2.1.</span> <span class="nav-text">使用简单案例试验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#objc-msgSend"><span class="nav-number">3.</span> <span class="nav-text">objc_msgSend</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#id-perform-SEL-aSelector-with-anObject"><span class="nav-number">3.1.</span> <span class="nav-text">- (id)perform:(SEL)aSelector with:anObject</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#runtime基本知识"><span class="nav-number">1.</span> <span class="nav-text">runtime基本知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#class"><span class="nav-number">1.1.</span> <span class="nav-text">class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#id"><span class="nav-number">1.2.</span> <span class="nav-text">id</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#objc-object"><span class="nav-number">1.3.</span> <span class="nav-text">objc_object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#objc-class"><span class="nav-number">1.4.</span> <span class="nav-text">objc_class</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ivar"><span class="nav-number">1.5.</span> <span class="nav-text">ivar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#objc-ivar"><span class="nav-number">1.6.</span> <span class="nav-text">objc_ivar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.7.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">1.8.</span> <span class="nav-text">更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类-对象方法调用"><span class="nav-number">1.8.1.</span> <span class="nav-text">类,对象方法调用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#访问一个类的ivar"><span class="nav-number">2.</span> <span class="nav-text">访问一个类的ivar</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用简单案例试验"><span class="nav-number">2.1.</span> <span class="nav-text">使用简单案例试验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#objc-msgSend"><span class="nav-number">3.</span> <span class="nav-text">objc_msgSend</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#id-perform-SEL-aSelector-with-anObject"><span class="nav-number">3.1.</span> <span class="nav-text">- (id)perform:(SEL)aSelector with:anObject</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -565,7 +572,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
