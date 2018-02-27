@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="swift," />
+  <meta name="keywords" content="Xcode," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="map &amp;amp; flatMapmapmap函数的定义:1public func map&amp;lt;T&amp;gt;(_ transform: (Element) throws -&amp;gt; T) rethrows -&amp;gt; [T]  这个是一个接受一个闭包参数,并且在闭包中返回一个集合元素类型该函数返回的是一个当前调用集合所有元素经过处理后的集合  使用示例 可以直接使用$0 来代表每个元素,并作为返回">
-<meta name="keywords" content="swift">
+<meta name="description" content="平常使用中xcode常见问题汇总 xcode版本: xcode9.0Mac版本: 10.13 Beta (17A362a)   App Installation failed, No code signature found. 解决办法: 到Xcode.app中（ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platf">
+<meta name="keywords" content="Xcode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="swiftTips">
-<meta property="og:url" content="https://heiguoliangle.github.io/2018/02/08/swiftTips/index.html">
+<meta property="og:title" content="xcode常见问题">
+<meta property="og:url" content="https://heiguoliangle.github.io/2018/02/27/xcode常见问题/index.html">
 <meta property="og:site_name" content="heiguoliangle">
-<meta property="og:description" content="map &amp;amp; flatMapmapmap函数的定义:1public func map&amp;lt;T&amp;gt;(_ transform: (Element) throws -&amp;gt; T) rethrows -&amp;gt; [T]  这个是一个接受一个闭包参数,并且在闭包中返回一个集合元素类型该函数返回的是一个当前调用集合所有元素经过处理后的集合  使用示例 可以直接使用$0 来代表每个元素,并作为返回">
+<meta property="og:description" content="平常使用中xcode常见问题汇总 xcode版本: xcode9.0Mac版本: 10.13 Beta (17A362a)   App Installation failed, No code signature found. 解决办法: 到Xcode.app中（ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platf">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-08T05:48:12.925Z">
+<meta property="og:image" content="https://heiguoliangle.github.io/2018/02/27/xcode常见问题/Snip20180226_11.png">
+<meta property="og:updated_time" content="2018-02-27T07:18:02.709Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="swiftTips">
-<meta name="twitter:description" content="map &amp;amp; flatMapmapmap函数的定义:1public func map&amp;lt;T&amp;gt;(_ transform: (Element) throws -&amp;gt; T) rethrows -&amp;gt; [T]  这个是一个接受一个闭包参数,并且在闭包中返回一个集合元素类型该函数返回的是一个当前调用集合所有元素经过处理后的集合  使用示例 可以直接使用$0 来代表每个元素,并作为返回">
+<meta name="twitter:title" content="xcode常见问题">
+<meta name="twitter:description" content="平常使用中xcode常见问题汇总 xcode版本: xcode9.0Mac版本: 10.13 Beta (17A362a)   App Installation failed, No code signature found. 解决办法: 到Xcode.app中（ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platf">
+<meta name="twitter:image" content="https://heiguoliangle.github.io/2018/02/27/xcode常见问题/Snip20180226_11.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://heiguoliangle.github.io/2018/02/08/swiftTips/"/>
+  <link rel="canonical" href="https://heiguoliangle.github.io/2018/02/27/xcode常见问题/"/>
 
 
 
 
 
-  <title>swiftTips | heiguoliangle</title>
+  <title>xcode常见问题 | heiguoliangle</title>
   
 
 
@@ -233,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/08/swiftTips/">
+    <link itemprop="mainEntityOfPage" href="https://heiguoliangle.github.io/2018/02/27/xcode常见问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="黑锅">
@@ -250,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">swiftTips</h1>
+          <h1 class="post-title" itemprop="name headline">xcode常见问题</h1>
         
 
         <div class="post-meta">
@@ -262,8 +264,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T11:26:37+08:00">
-                2018-02-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-27T15:11:07+08:00">
+                2018-02-27
               </time>
             
 
@@ -300,35 +302,19 @@
       
 
       
-        <h1 id="map-amp-flatMap"><a href="#map-amp-flatMap" class="headerlink" title="map &amp; flatMap"></a>map &amp; flatMap</h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><h3 id="map函数的定义"><a href="#map函数的定义" class="headerlink" title="map函数的定义:"></a>map函数的定义:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public func map&lt;T&gt;(_ transform: (Element) throws -&gt; T) rethrows -&gt; [T]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这个是一个接受一个闭包参数,并且在闭包中返回一个集合元素类型<br>该函数返回的是一个当前调用集合所有元素经过处理后的集合</p>
+        <h1 id="平常使用中xcode常见问题汇总"><a href="#平常使用中xcode常见问题汇总" class="headerlink" title="平常使用中xcode常见问题汇总"></a>平常使用中xcode常见问题汇总</h1><blockquote>
+<p>xcode版本: xcode9.0<br>Mac版本: 10.13 Beta (17A362a)</p>
 </blockquote>
-<h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><ol>
-<li><p>可以直接使用<code>$0</code> 来代表每个元素,并作为返回值.</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let numbers = 1...3</span><br><span class="line">        let result = numbers.map &#123;</span><br><span class="line">            $0</span><br><span class="line">        &#125;</span><br><span class="line">        print(result)    //输出：[1, 2, 3]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>作为闭包参数来返回,可以对每一个元素进行单独处理,并且在闭包内需要<code>return</code>,还需要特别的指定<code>Int</code>这个泛型的具体类型</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let result1 = numbers.map &#123; (element) -&gt; Int in</span><br><span class="line">            if element &lt; 3 &#123;</span><br><span class="line">                return element</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return 10</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">print(result1)    //输出：[1, 2, 10]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="flatmap"><a href="#flatmap" class="headerlink" title="flatmap"></a>flatmap</h2><h3 id="flatmap函数定义"><a href="#flatmap函数定义" class="headerlink" title="flatmap函数定义"></a>flatmap函数定义</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">extension SequenceType &#123;</span><br><span class="line">    public func flatMap&lt;S : SequenceType&gt;(transform: (Self.Generator.Element) -&gt; S) </span><br><span class="line">         -&gt; [S.Generator.Element]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension SequenceType &#123;</span><br><span class="line">    public func flatMap&lt;T&gt;(transform: (Self.Generator.Element) -&gt; T?) </span><br><span class="line">         -&gt; [T]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>与map类似的,同样是一个闭包参数,返回单个元素<br>最终返回的类型调用函数数组(可以在闭包中对单个元素进行重新添加)</p>
-</blockquote>
-<h3 id="使用示例-1"><a href="#使用示例-1" class="headerlink" title="使用示例"></a>使用示例</h3><ol>
-<li>使用<code>$0</code></li>
-</ol>
-<p>使用的数组<code>let strs : [AnyObject?] = [&quot;23&quot; as AnyObject,&quot;43rf&quot; as AnyObject,nil,34 as AnyObject]</code></p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let flat2 = strs.flatMap&#123;$0&#125;</span><br><span class="line">print(flat2) // [23, 43rf, 34]</span><br></pre></td></tr></table></figure>
-</code></pre><ol>
-<li><p>使用闭包处理</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let test = strs.flatMap &#123; (e) -&gt; Int? in</span><br><span class="line">            return e as? Int</span><br><span class="line">        &#125;</span><br><span class="line">print(test) // [34]</span><br><span class="line">let flat1 = strs.flatMap &#123; (e) -&gt; String? in</span><br><span class="line">  return e as? String</span><br><span class="line">&#125;</span><br><span class="line">print(flat1) // [&quot;23&quot;, &quot;43rf&quot;]</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
 <ol>
-<li><p>将多维数组合并到一个数组中</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let arr = [[1, 2, 3], [6, 5, 4]]</span><br><span class="line">let brr = arr.flatMap &#123;</span><br><span class="line">    $0</span><br><span class="line">&#125;</span><br><span class="line">// brr = [1, 2, 3, 6, 5, 4]</span><br></pre></td></tr></table></figure>
+<li><code>App Installation failed, No code signature found.</code><ul>
+<li>解决办法: 到Xcode.app中（ /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk ）修改SDKSettings.plist 文件中的一项CODE_SIGNING_REQUIRED的值，从NO改为YES，再重启XCode即可。</li>
+<li><a href="https://forums.developer.apple.com/message/170207#170207" target="_blank" rel="noopener">Apple论坛</a></li>
+</ul>
+</li>
+<li><code>build operations are disabled : &#39;Pods.xcodeproj&#39; has changed and is reloading</code><ul>
+<li><img src="/2018/02/27/xcode常见问题/Snip20180226_11.png" alt="错误截图"></li>
+<li>解决办法: 删除workspace,lock,pods</li>
+</ul>
 </li>
 </ol>
 
@@ -348,7 +334,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/swift/" rel="tag"># swift</a>
+            <a href="/tags/Xcode/" rel="tag"># Xcode</a>
           
         </div>
       
@@ -361,8 +347,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/31/swift/" rel="next" title="swift">
-                <i class="fa fa-chevron-left"></i> swift
+              <a href="/2018/02/12/KVO-KVC/" rel="next" title="KVO-KVC">
+                <i class="fa fa-chevron-left"></i> KVO-KVC
               </a>
             
           </div>
@@ -370,10 +356,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/08/Xcode中 Launch Arguments与Environment Variables/" rel="prev" title="Xcode中 Launch Arguments与Environment Variables">
-                Xcode中 Launch Arguments与Environment Variables <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -496,7 +478,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#map-amp-flatMap"><span class="nav-number">1.</span> <span class="nav-text">map &amp; flatMap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">1.1.</span> <span class="nav-text">map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map函数的定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">map函数的定义:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flatmap"><span class="nav-number">1.2.</span> <span class="nav-text">flatmap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#flatmap函数定义"><span class="nav-number">1.2.1.</span> <span class="nav-text">flatmap函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用示例</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#平常使用中xcode常见问题汇总"><span class="nav-number">1.</span> <span class="nav-text">平常使用中xcode常见问题汇总</span></a></li></ol></div>
             
 
           </div>
