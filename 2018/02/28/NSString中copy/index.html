@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://heiguoliangle.github.io/2018/02/28/NSString中copy/Snip20180228_20.png">
 <meta property="og:image" content="https://heiguoliangle.github.io/2018/02/28/NSString中copy/1118933-20170720203748536-592203434.png">
-<meta property="og:updated_time" content="2018-02-28T10:28:12.770Z">
+<meta property="og:updated_time" content="2018-02-28T10:31:49.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSString中copy&amp;strong">
 <meta name="twitter:description" content="@property参数 通过property声明的属性会自动生成setter/getter方法. nonatomic &amp;lt;–&amp;gt; atomic readwrite &amp;lt;–&amp;gt; readonly strong / copy / assign  synthesize有些代码可能会使用@synthesize关键字(iOS5之前).iOS5之后,property已经优化了该属性,自动生成s">
@@ -360,7 +360,7 @@
 <li>在修改originStr 后,<code>strong</code>修饰的变量值跟着改变为新的地址(同新的originStr一致).</li>
 <li>即使修改originStr后, <code>copy</code>修饰的变量一样使用第一次赋值的值.</li>
 </ol>
-<h2 id="回归主题-–-gt-copy-strong"><a href="#回归主题-–-gt-copy-strong" class="headerlink" title="回归主题 –&gt; copy / strong"></a>回归主题 –&gt; <code>copy</code> / <code>strong</code></h2><p>借用网上众多深拷贝,浅拷贝之说:</p>
+<h1 id="回归主题-–-gt-copy-strong"><a href="#回归主题-–-gt-copy-strong" class="headerlink" title="回归主题 –&gt; copy / strong"></a>回归主题 –&gt; <code>copy</code> / <code>strong</code></h1><p>借用网上众多深拷贝,浅拷贝之说:</p>
 <blockquote>
 <ol>
 <li>深拷贝: 开辟一块新内存地址,使用指针指向这块地址.对原来的对象引用计数不变.</li>
@@ -544,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#property参数"><span class="nav-number">1.</span> <span class="nav-text">@property参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#synthesize"><span class="nav-number">1.1.</span> <span class="nav-text">synthesize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atomic-nonatomic"><span class="nav-number">1.2.</span> <span class="nav-text">atomic / nonatomic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#readwrite-readonly"><span class="nav-number">1.3.</span> <span class="nav-text">readwrite / readonly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assign"><span class="nav-number">1.4.</span> <span class="nav-text">assign</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#copy-strong"><span class="nav-number">2.</span> <span class="nav-text">copy / strong</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSString赋值操作"><span class="nav-number">2.1.</span> <span class="nav-text">NSString赋值操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSMutableString赋值操作"><span class="nav-number">2.2.</span> <span class="nav-text">NSMutableString赋值操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回归主题-–-gt-copy-strong"><span class="nav-number">2.3.</span> <span class="nav-text">回归主题 –&gt; copy / strong</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#property参数"><span class="nav-number">1.</span> <span class="nav-text">@property参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#synthesize"><span class="nav-number">1.1.</span> <span class="nav-text">synthesize</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atomic-nonatomic"><span class="nav-number">1.2.</span> <span class="nav-text">atomic / nonatomic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#readwrite-readonly"><span class="nav-number">1.3.</span> <span class="nav-text">readwrite / readonly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assign"><span class="nav-number">1.4.</span> <span class="nav-text">assign</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#copy-strong"><span class="nav-number">2.</span> <span class="nav-text">copy / strong</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSString赋值操作"><span class="nav-number">2.1.</span> <span class="nav-text">NSString赋值操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSMutableString赋值操作"><span class="nav-number">2.2.</span> <span class="nav-text">NSMutableString赋值操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回归主题-–-gt-copy-strong"><span class="nav-number">3.</span> <span class="nav-text">回归主题 –&gt; copy / strong</span></a></li></ol></div>
             
 
           </div>
