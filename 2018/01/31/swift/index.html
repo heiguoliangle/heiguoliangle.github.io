@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="swift," />
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="swift4.0 使用错误示例及解决办法 &amp;#39;HGL_TitleViewStyle&amp;#39; initializer is inaccessible due to &amp;#39;internal&amp;#39; protection level  123456789public class HGL_TitleViewStyle &amp;#123;        public var titleViewHei">
+<meta name="keywords" content="swift">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swift">
 <meta property="og:url" content="https://heiguoliangle.github.io/2018/01/31/swift/index.html">
 <meta property="og:site_name" content="heiguoliangle">
 <meta property="og:description" content="swift4.0 使用错误示例及解决办法 &amp;#39;HGL_TitleViewStyle&amp;#39; initializer is inaccessible due to &amp;#39;internal&amp;#39; protection level  123456789public class HGL_TitleViewStyle &amp;#123;        public var titleViewHei">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-02T08:27:27.075Z">
+<meta property="og:updated_time" content="2018-03-02T01:46:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swift">
 <meta name="twitter:description" content="swift4.0 使用错误示例及解决办法 &amp;#39;HGL_TitleViewStyle&amp;#39; initializer is inaccessible due to &amp;#39;internal&amp;#39; protection level  123456789public class HGL_TitleViewStyle &amp;#123;        public var titleViewHei">
@@ -328,6 +329,23 @@
 <p>在编写pod字库时候,在本地文件已经存在,但是在项目的pod里面并未引用到的,需要重新 <code>pod install</code>即可</p>
 </blockquote>
 </li>
+<li><p>引用pod字库中添加的图片资源</p>
+<blockquote>
+<p>我使用的是<code>pod lib create name</code> 的方式创建的模板工程,自带有<code>Assets</code> 和 <code>Classes</code>文件夹.<br> 当使用这个模式来创建字库时候,在spec中引用图片资源,应该使用:</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s.resource_bundles = &#123;</span><br><span class="line">  &apos;HD_AccountModule&apos; =&gt; [&apos;HD_AccountModule/Assets/HD_AccountModule.bundle/*&apos;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这样在宿主工程中引用到的就是在<code>source/HD_AccountModule.bundle</code>这个目录下的.</p>
+<blockquote>
+<p>当使用常用模式,在模板目录(HD_AccountModule/)下直接添加资源文件夹时候,引用图片资源应该使用:</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.resources = &apos;HD_AccountModule/HD_AccountModule.bundle&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pod子库中使用xib,连线后属性为nil</p>
+<blockquote>
+<p>因为xib的实例化默认是在<code>mainBundle</code>中去寻找,当宿主工程引用子库时,子库对应的<code>bundle</code>已经不是<code>mainBundle</code>了,而应该是对应的.<br> 解决办法:<br> 在使用xib的View或者VC中重写方法,并指定bundle</p>
+</blockquote>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) &#123;</span><br><span class="line">       let bundle = Bundle.init(for: HD_LoginVC.self)</span><br><span class="line">       super.init(nibName: &quot;HD_LoginVC&quot;, bundle: bundle)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
 <h1 id="nav-是否隐藏问题"><a href="#nav-是否隐藏问题" class="headerlink" title="nav 是否隐藏问题"></a>nav 是否隐藏问题</h1><p>在自定义导航栏时候滑动滑返回时候由于导航栏是否隐藏需要使用 <code>setNavigationBarHidden</code>来设置,在设置<code>setNavigationBarHidden</code>之后,会关闭系统默认的右滑手势,需要手动开启,使用<code>navigationController?.interactivePopGestureRecognizer?.delegate = self</code>方法将滑动权限交由控制器本身<strong>animated必须是TRUE,否则不起作用!!!</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()      </span><br><span class="line">navigationController?.interactivePopGestureRecognizer?.delegate = self</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">override func viewWillAppear(_ animated: Bool) &#123;</span><br><span class="line">   super.viewWillAppear(animated)</span><br><span class="line">   navigationController?.setNavigationBarHidden(true, animated: false)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">override func viewWillDisappear(_ animated: Bool) &#123;</span><br><span class="line">   super.viewWillAppear(animated)          	navigationController?.setNavigationBarHidden(false, animated: false)</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">extension HD_TSSearchVC : UIGestureRecognizerDelegate&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -348,6 +366,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="../../../../tags/swift/" rel="tag"># swift</a>
+          
+        </div>
       
 
       
@@ -486,6 +510,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://forums.developer.apple.com/welcome" title="苹果论坛" target="_blank">苹果论坛</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.sunnyxx.com" title="sunny博客" target="_blank">sunny博客</a>
                   </li>
                 
               </ul>
