@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="reverse," />
+  <meta name="keywords" content="OC," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="安装iOSopenDev失败 解决失败问题 失败原因    1Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain  title: 逆向学习遇到的坑及链接地址layout: post date: 2017-05-16 15:19:08 lldb语法官网">
-<meta name="keywords" content="reverse">
+<meta name="description" content="@synthesize will generate getter and setter methods for your property. @dynamic just tells the compiler that the getter and setter methods are implemented not by the class itself but somewhere else (">
+<meta name="keywords" content="OC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逆向遇到的问题及解决办法">
-<meta property="og:url" content="https://heiguoliangle.github.io/2017/12/16/逆向遇到的问题/index.html">
+<meta property="og:title" content="@synthesize与@dynamic">
+<meta property="og:url" content="https://heiguoliangle.github.io/2018/03/29/synthesize与-dynamic/index.html">
 <meta property="og:site_name" content="heiguoliangle">
-<meta property="og:description" content="安装iOSopenDev失败 解决失败问题 失败原因    1Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain  title: 逆向学习遇到的坑及链接地址layout: post date: 2017-05-16 15:19:08 lldb语法官网">
+<meta property="og:description" content="@synthesize will generate getter and setter methods for your property. @dynamic just tells the compiler that the getter and setter methods are implemented not by the class itself but somewhere else (">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-23T05:39:09.176Z">
+<meta property="og:updated_time" content="2018-03-29T11:08:35.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="逆向遇到的问题及解决办法">
-<meta name="twitter:description" content="安装iOSopenDev失败 解决失败问题 失败原因    1Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain  title: 逆向学习遇到的坑及链接地址layout: post date: 2017-05-16 15:19:08 lldb语法官网">
+<meta name="twitter:title" content="@synthesize与@dynamic">
+<meta name="twitter:description" content="@synthesize will generate getter and setter methods for your property. @dynamic just tells the compiler that the getter and setter methods are implemented not by the class itself but somewhere else (">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://heiguoliangle.github.io/2017/12/16/逆向遇到的问题/"/>
+  <link rel="canonical" href="https://heiguoliangle.github.io/2018/03/29/synthesize与-dynamic/"/>
 
 
 
 
 
-  <title>逆向遇到的问题及解决办法 | heiguoliangle</title>
+  <title>@synthesize与@dynamic | heiguoliangle</title>
   
 
 
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">逆向遇到的问题及解决办法</h1>
+          <h1 class="post-title" itemprop="name headline">@synthesize与@dynamic</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-16T15:19:08+08:00">
-                2017-12-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T18:14:45+08:00">
+                2018-03-29
               </time>
             
 
@@ -300,18 +300,25 @@
       
 
       
-        <h1 id="安装iOSopenDev失败"><a href="#安装iOSopenDev失败" class="headerlink" title="安装iOSopenDev失败"></a>安装iOSopenDev失败</h1><ol>
-<li><a href="https://www.ianisme.com/ios/2319.html" target="_blank" rel="noopener">解决失败问题</a><ol>
-<li>失败原因</li>
+        <blockquote>
+<p>@synthesize will generate getter and setter methods for your property. @dynamic just tells the compiler that the getter and setter methods are implemented not by the class itself but somewhere else (like the superclass or will be provided at runtime).</p>
+</blockquote>
+<h1 id="property"><a href="#property" class="headerlink" title="property"></a>property</h1><p>iOS6之后才出来的,这里 <code>property</code>, 包含</p>
+<ol>
+<li>自动生成getter,setter方法</li>
+<li>生成带下划线的成员变量<br>可以这么看 :<br><code>property</code> = <code>synthesize</code> + <code>_属性名</code></li>
 </ol>
-</li>
+<h1 id="synthesize"><a href="#synthesize" class="headerlink" title="@synthesize"></a>@synthesize</h1><p>具体什么时候不知道…</p>
+<ol>
+<li>只生成getter,setter方法</li>
+<li>不能生成下划线的成员变量<br><strong>当使用了synthesize修饰后,不能够访问下划线变量,如果要访问,可以另外定义一个,赋值;或者直接将</strong></li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dec 26 18:13:28 bogon installd[19259]: PackageKit: Install Failed: Error Domain=PKInstallErrorDomain</span><br></pre></td></tr></table></figure>
-<hr>
-<p>title: 逆向学习遇到的坑及链接地址<br>layout: post</p>
-<h2 id="date-2017-05-16-15-19-08"><a href="#date-2017-05-16-15-19-08" class="headerlink" title="date: 2017-05-16 15:19:08"></a>date: 2017-05-16 15:19:08</h2><ol>
-<li><a href="https://lldb.llvm.org/lldb-gdb.html" target="_blank" rel="noopener">lldb语法官网</a></li>
-</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@synthesize age = _age; /// 这个意思使用_age和访问age是同样的值,就是可以理解为别名.但是这个_age并不是成员变量.</span><br><span class="line">@synthesize age = newAge; /// 将age赋值给一个新的属性或者成员变量.使用self. 和新值同样的效果</span><br></pre></td></tr></table></figure>
+<h1 id="dynamic"><a href="#dynamic" class="headerlink" title="@dynamic"></a>@dynamic</h1><p>这个是告诉编译器,不要生成getter或者setter方法,由程序员手动来写,或者在运行时来生成.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@dynamic names;</span><br></pre></td></tr></table></figure>
+<p>使用@dynamic 时候,可以对父类中的属性进行重新定义,加入父类是只读,之类中添加@dynamic 后,可将其改为可读可写属性.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@interface Person : NSObject</span><br><span class="line">@property(nonatomic,strong,readonly)NSArray * names;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@interface Student : Person</span><br><span class="line">@property(nonatomic,strong,readwrite)NSArray * names;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation Student</span><br><span class="line">@dynamic names;</span><br><span class="line">    </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>这时候names 在子类中是可读可写</p>
 
       
     </div>
@@ -329,7 +336,7 @@
       
         <div class="post-tags">
           
-            <a href="../../../../tags/reverse/" rel="tag"># reverse</a>
+            <a href="../../../../tags/OC/" rel="tag"># OC</a>
           
         </div>
       
@@ -342,15 +349,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="../../18/Block与变量/" rel="next" title="Block与变量">
+                <i class="fa fa-chevron-left"></i> Block与变量
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="../../17/终端常用语法/" rel="prev" title="逆向时终端语法">
-                逆向时终端语法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,7 +498,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装iOSopenDev失败"><span class="nav-number">1.</span> <span class="nav-text">安装iOSopenDev失败</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#date-2017-05-16-15-19-08"><span class="nav-number">1.1.</span> <span class="nav-text">date: 2017-05-16 15:19:08</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#property"><span class="nav-number">1.</span> <span class="nav-text">property</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#synthesize"><span class="nav-number">2.</span> <span class="nav-text">@synthesize</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dynamic"><span class="nav-number">3.</span> <span class="nav-text">@dynamic</span></a></li></ol></div>
             
 
           </div>

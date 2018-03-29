@@ -345,6 +345,11 @@
 <p>因为xib的实例化默认是在<code>mainBundle</code>中去寻找,当宿主工程引用子库时,子库对应的<code>bundle</code>已经不是<code>mainBundle</code>了,而应该是对应的.<br> 解决办法:<br> 在使用xib的View或者VC中重写方法,并指定bundle</p>
 </blockquote>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) &#123;</span><br><span class="line">       let bundle = Bundle.init(for: HD_LoginVC.self)</span><br><span class="line">       super.init(nibName: &quot;HD_LoginVC&quot;, bundle: bundle)</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p><code>[!] The</code>HD_PassExperience_Example [Release]<code>target overrides the</code>SWIFT_VERSION<code>build setting defined in</code>Pods/Target Support Files/Pods-HD_PassExperience_Example/Pods-HD_PassExperience_Example.release.xcconfig’. This can lead to problems with the CocoaPods installation     - Use the <code>$(inherited)</code> flag, or     - Remove the build settings from the target.<code>,在使用pod时候安装第三方(我安装的是WCDB.swift)时候,运行</code>pod install`时候,终端报错.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这里说的是pod Pods-HD_PassExperience_Example.debug 这个文件中的 SWIFT_VERSION 与 target中的设置有冲突,虽然能够安装,但是编译时候回报错:</span><br><span class="line">在 target中setting,将SWIFT_VERSION删除(即设置成默认的)即可解决.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 </li>
 </ol>
 <h1 id="nav-是否隐藏问题"><a href="#nav-是否隐藏问题" class="headerlink" title="nav 是否隐藏问题"></a>nav 是否隐藏问题</h1><p>在自定义导航栏时候滑动滑返回时候由于导航栏是否隐藏需要使用 <code>setNavigationBarHidden</code>来设置,在设置<code>setNavigationBarHidden</code>之后,会关闭系统默认的右滑手势,需要手动开启,使用<code>navigationController?.interactivePopGestureRecognizer?.delegate = self</code>方法将滑动权限交由控制器本身<strong>animated必须是TRUE,否则不起作用!!!</strong></p>
@@ -471,7 +476,7 @@
               
                 <a href="../../../../archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
