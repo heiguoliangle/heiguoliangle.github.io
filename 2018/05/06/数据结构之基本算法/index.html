@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据机构," />
+  <meta name="keywords" content="数据结构," />
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="排序篇基本排序为了方便查找,通常希望查找对象是有序的,这里就简单说常见 的排序算法:  插入排序 选择排序 快速排序  插入排序插入排序核心思想就是将某一个数字插入到 已经排好顺序的数组中.注意这里插入进去的数组之前就是有序的.所以需要在刚开始时候就应该生成一个有序的数组,在之后将其他元素逐一插入.为了保证之前的数组有序,通常从第二个元素进行插入.  代码:   OC 版: 12345678910">
-<meta name="keywords" content="数据机构">
+<meta name="keywords" content="数据结构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构之基本算法">
 <meta property="og:url" content="https://heiguoliangle.github.io/2018/05/06/数据结构之基本算法/index.html">
 <meta property="og:site_name" content="heiguoliangle">
 <meta property="og:description" content="排序篇基本排序为了方便查找,通常希望查找对象是有序的,这里就简单说常见 的排序算法:  插入排序 选择排序 快速排序  插入排序插入排序核心思想就是将某一个数字插入到 已经排好顺序的数组中.注意这里插入进去的数组之前就是有序的.所以需要在刚开始时候就应该生成一个有序的数组,在之后将其他元素逐一插入.为了保证之前的数组有序,通常从第二个元素进行插入.  代码:   OC 版: 12345678910">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-06T10:03:55.093Z">
+<meta property="og:updated_time" content="2018-05-06T10:06:23.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构之基本算法">
 <meta name="twitter:description" content="排序篇基本排序为了方便查找,通常希望查找对象是有序的,这里就简单说常见 的排序算法:  插入排序 选择排序 快速排序  插入排序插入排序核心思想就是将某一个数字插入到 已经排好顺序的数组中.注意这里插入进去的数组之前就是有序的.所以需要在刚开始时候就应该生成一个有序的数组,在之后将其他元素逐一插入.为了保证之前的数组有序,通常从第二个元素进行插入.  代码:   OC 版: 12345678910">
@@ -339,9 +339,11 @@
 <h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序的核心思想是在一次循环中选择到值最小的下标值,在该次循环完成后更改对应下标的值.</p>
 <ul>
 <li><p>代码</p>
-</li>
+<ul>
 <li><p>OC版</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)selectSort:(NSMutableArray&lt;NSNumber *&gt; *)arr &#123;</span><br><span class="line">   int minIndex = 0;</span><br><span class="line">   NSNumber * tmp;</span><br><span class="line">   for (int i = 0; i &lt; arr.count - 2; i ++) &#123;</span><br><span class="line">       minIndex = i;</span><br><span class="line">       for (int j = i + 1; j &lt; arr.count; j ++) &#123;</span><br><span class="line">           if ([arr[j] intValue] &lt; [arr[minIndex] intValue]) &#123;</span><br><span class="line">               minIndex = j;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if (minIndex != i) &#123; /// 交换值</span><br><span class="line">           tmp = arr[minIndex];</span><br><span class="line">           arr[minIndex] = arr[i];</span><br><span class="line">           arr[i] = tmp;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- (void)selectSort:(NSMutableArray&lt;NSNumber *&gt; *)arr &#123;</span><br><span class="line">   int minIndex = 0;</span><br><span class="line">   NSNumber * tmp;</span><br><span class="line">   for (int i = 0; i &lt; arr.count - 2; i ++) &#123;</span><br><span class="line">       minIndex = i;</span><br><span class="line">       for (int j = i + 1; j &lt; arr.count; j ++) &#123;</span><br><span class="line">           if ([arr[j] intValue] &lt; [arr[minIndex] intValue]) &#123;</span><br><span class="line">               minIndex = j;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if (minIndex != i) &#123; /// 交换值</span><br><span class="line">           tmp = arr[minIndex];</span><br><span class="line">           arr[minIndex] = arr[i];</span><br><span class="line">           arr[i] = tmp;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 </li>
 </ul>
 <ul>
@@ -370,10 +372,12 @@
 </ul>
 </li>
 </ul>
-<pre><code>- swift版
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"> func quickSort(_ arr : inout [Int],start : Int,end : Int) &#123;</span><br><span class="line">    if start &gt;= end &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    var low = start</span><br><span class="line">    var high = end</span><br><span class="line">    let key = arr[start]</span><br><span class="line">    while low &lt; high &#123;</span><br><span class="line">        for _ in 0..&lt;high &#123;</span><br><span class="line">            if (low &gt;= high)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            if arr[high] &lt; key &#123;</span><br><span class="line">                arr[low] = arr[high]</span><br><span class="line">                break</span><br><span class="line">            &#125;</span><br><span class="line">            high = high - 1</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        for _ in 0..&lt;end &#123;</span><br><span class="line">            if (low &gt;= high)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            if arr[low] &gt; key &#123;</span><br><span class="line">                arr[high] = arr[low]</span><br><span class="line">                break</span><br><span class="line">            &#125;</span><br><span class="line">            low = low + 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if low == high &#123;</span><br><span class="line">        arr[low] = key</span><br><span class="line">    &#125;</span><br><span class="line">    quickSort(&amp;arr, start: start, end: low - 1)</span><br><span class="line">    quickSort(&amp;arr, start: low + 1, end: end)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><ul>
+<ul>
+<li><p>swift版</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"> func quickSort(_ arr : inout [Int],start : Int,end : Int) &#123;</span><br><span class="line">    if start &gt;= end &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    var low = start</span><br><span class="line">    var high = end</span><br><span class="line">    let key = arr[start]</span><br><span class="line">    while low &lt; high &#123;</span><br><span class="line">        for _ in 0..&lt;high &#123;</span><br><span class="line">            if (low &gt;= high)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            if arr[high] &lt; key &#123;</span><br><span class="line">                arr[low] = arr[high]</span><br><span class="line">                break</span><br><span class="line">            &#125;</span><br><span class="line">            high = high - 1</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        for _ in 0..&lt;end &#123;</span><br><span class="line">            if (low &gt;= high)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            if arr[low] &gt; key &#123;</span><br><span class="line">                arr[high] = arr[low]</span><br><span class="line">                break</span><br><span class="line">            &#125;</span><br><span class="line">            low = low + 1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if low == high &#123;</span><br><span class="line">        arr[low] = key</span><br><span class="line">    &#125;</span><br><span class="line">    quickSort(&amp;arr, start: start, end: low - 1)</span><br><span class="line">    quickSort(&amp;arr, start: low + 1, end: end)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
 <li>注意点: </li>
 </ul>
 <blockquote>
@@ -418,7 +422,7 @@
       
         <div class="post-tags">
           
-            <a href="../../../../tags/数据机构/" rel="tag"># 数据机构</a>
+            <a href="../../../../tags/数据结构/" rel="tag"># 数据结构</a>
           
         </div>
       
